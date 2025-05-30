@@ -1,7 +1,7 @@
-# Nome do Sistema
+# Reclama.se
 
 ## 💡 Descrição Geral
-Breve descrição do sistema apresentado no pitch. Indique o problema que resolve, público-alvo e principais funcionalidades.
+O Reclama.se busca visibilizar os problemas enfrentados por todas as camadas da sociedade, formando uma ponte entre cidadãos e a esfera pública ao facilitar a comunicação e fiscalização de demandas urbanas que prejudicam o bem-estar da população.
 
 ## 📌 Escopo Geral
 Liste de forma objetiva os principais módulos/funções definidos no início do projeto:
