@@ -1,0 +1,73 @@
+@startuml
+title Reclã.me - Fluxo de Denúncia
+
+|#lightblue|Órgão|
+|Sistema|
+|#lightgreen|Usuário|
+
+start
+
+|Usuário|
+:Autenticar via gov.br; <<procedure>>
+:Iniciar nova denúncia; <<procedure>>
+
+split
+  :Descrever o problema;
+split again
+  :Anexar evidências (arquivos);
+  |Sistema|
+  while (Arquivos compatíveis?) is (não)
+    :Solicitar reenvio dos arquivos;
+|Usuário|
+    :Adicionar novos arquivos; <<output>>
+  endwhile (sim)
+endsplit
+
+|Usuário|
+:Confirmar e publicar denúncia;
+
+|Sistema|
+:Analisar conteúdo da denúncia; <<procedure>>
+
+(A) 
+detach
+
+(B) 
+:Gerar e enviar relatório; <<output>>
+
+fork
+  |Usuário|
+  :Receber relatório; <<input>>
+  :Enviar feedback;
+
+  |Sistema|
+  :Analisar feedback recebido; <<procedure>>
+
+  (A)
+  detach
+
+  (B)
+  :Confirmar recebimento do feedback;
+  detach
+fork again
+  |Órgão|
+  :Receber relatório gerado; <<input>>
+end fork
+
+|Órgão|
+:Emitir resposta à denúncia; <<procedure>>
+
+stop
+
+|Sistema|
+(A)
+if (Conforme diretrizes?) then (não)
+  #red:<color:white>Editar ou excluir\n<color:white>conteúdo denunciado;
+  :Notificar usuário sobre ação tomada; <<output>>
+  stop
+endif
+
+(B)
+detach
+
+@enduml
