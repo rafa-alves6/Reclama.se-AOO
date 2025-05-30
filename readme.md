@@ -16,7 +16,7 @@ O Reclama.se busca visibilizar os problemas enfrentados por todas as camadas da 
 - [requisitos.md](./requisitos.md): Detalhe dos requisitos dos sistema.
 
 ## 🛠️ Tecnologias e Ferramentas
-- Para a criação dos diagramas UML, usamos o [PlantUML](https://github.com/ziulalb).
+- Para a criação dos diagramas UML, usamos o [PlantUML](plantuml.com).
 - React Native, para desenvolvimento de aplicações mobile.
 - Java com framework Spring para desenvolvimento back-end.
 - AWS com buckets S3 para armazenamento de arquivos de usuários.
