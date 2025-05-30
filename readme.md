@@ -1,14 +1,12 @@
 # Reclama.se
 
 ## 💡 Descrição Geral
-O Reclama.se busca visibilizar os problemas enfrentados por todas as camadas da sociedade, formando uma ponte entre cidadãos e a esfera pública ao facilitar a comunicação e fiscalização de demandas urbanas que prejudicam o bem-estar da população.
+O Reclama.se busca visibilizar os problemas enfrentados por todas as camadas da sociedade, formando uma ponte entre cidadãos e entidades responsáveis ao facilitar a comunicação e fiscalização de demandas urbanas que prejudicam o bem-estar da população.
 
 ## 📌 Escopo Geral
-Liste de forma objetiva os principais módulos/funções definidos no início do projeto:
-
-- [ ] Funcionalidade 1
-- [ ] Funcionalidade 2
-- [ ] ...
+- [ ] O sistema deve permitir o registro de denúncias por cidadãos, com campos para descrição, anexos, localização e categoria.
+- [ ] O sistema deve permitir que entidades públicas ou privadas tratem e respondam às denúncias, atualizando seu status e fornecendo informações complementares.
+- [ ] O sistema deve permitir que o cidadão acompanhe o andamento da denúncia, receba notificações sobre mudanças no status e avalie o atendimento ao final do processo.
 
 ## 📁 Estrutura dos Arquivos
 - [descricao/](./descricao/readme.md): Descrição da atividade e elementos básicos que serão avaliados.
@@ -18,8 +16,12 @@ Liste de forma objetiva os principais módulos/funções definidos no início do
 - [requisitos.md](./requisitos.md): Detalhe dos requisitos dos sistema.
 
 ## 🛠️ Tecnologias e Ferramentas
-Liste aqui (se aplicável) as linguagens ou frameworks pensados para a implementação, bem como ferramentas de modelagem.
+- Para a criação dos diagramas UML, usamos o [PlantUML](https://github.com/ziulalb).
+- React Native, para desenvolvimento de aplicações mobile.
+- Java com framework Spring para desenvolvimento back-end.
+- AWS com buckets S3 para armazenamento de arquivos de usuários.
 
 ## 👥 Integrantes
-- Nome 1 
-- Nome 2 
+- [João Rafael](https://github.com/rafa-alves6) 
+- [Erick Francisco](https://github.com/erickfranciisco)
+- [Luiz Albuquerque](https://github.com/ziulalb)
