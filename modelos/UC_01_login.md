@@ -1,7 +1,5 @@
-
-
-# 1. 🎯 Caso de Uso: Login
-- [1. 🎯 Caso de Uso: Login](#1--caso-de-uso-login)
+# 1. 🎯 Caso de Uso: Reclama.se
+- [1. 🎯 Caso de Uso: Reclama.se](#1--caso-de-uso-reclama.se)
 	- [1.1. Identificação](#11-identificação)
 	- [1.2. Visão Geral](#12-visão-geral)
 	- [1.3. Fluxo Principal de Eventos](#13-fluxo-principal-de-eventos)
@@ -20,10 +18,9 @@
 
 
 ## 1.1. Identificação
-- **Nome**: Login  
-- **Ator Primário**: Usuário  
-- **Descrição**: Permite que um usuário acesse o sistema mediante a inserção e validação de suas credenciais (usuário e senha).
-
+- **Nome**: Registro de Denúncia  
+- **Ator Primário**: Usuário
+- **Descrição**: O usuário aponta um problema público, mediante uma denúncia, acionando os órgãos responsáveis, a fim de sua resolução. 
 ---
 
 
@@ -31,47 +28,45 @@
 
 ```puml
 @startuml
-left to right direction
 
-actor "Usuário" as Usuario
-actor "Administrador" as Adm
-actor "Usuário Comum" as Comum
+skinparam actorStyle awesome
 
-Adm --|> Usuario
-Comum --|> Usuario
+actor "Usuário" as U
+actor "Órgão Responsável" as O
+actor "Sistema" as S
 
-rectangle "Sistema de Autenticação" {
-  usecase "Inserir credenciais" as UC1
-  usecase "Validar credenciais" as UC2
-  usecase "Exibir mensagem de erro" as UC3
-  usecase "Bloquear conta temporariamente" as UC4
-  usecase "Redirecionar para painel do administrador" as UC5
-  usecase "Redirecionar para painel do usuário" as UC6
-  usecase "Solicitar troca de senha (1º acesso)" as UC7
-}
+U --> (Cadastrar Usuário)
+U --> (Autenticar Usuário)
+U --> (Registrar Denúncia)
+U --> (Assinar Denúncia)
+U --> (Pesquisar Denúncia)
+U --> (Editar/Excluir Publicação)
 
-Usuario --> UC1
-UC1 --> UC2
+S --> (Notificar Atualizações)
+S --> (Registrar Denúncia)
+S --> (Gerar Relatório)
+S --> (Editar/Excluir Publicação)
 
-UC2 --> UC5 : [credenciais válidas \n e perfil administrador]
-UC2 --> UC6 : [credenciais válidas \n e perfil comum]
-UC2 --> UC7 : [primeiro acesso]
+O --> (Responder Denúncia)
 
-UC2 --> UC3 : [credenciais inválidas]
-UC2 --> UC4 : [5 tentativas inválidas]
+(Registrar Denúncia) .down.> (Gerar Relatório) : gera
+(Registrar Denúncia) .down.> (Notificar Atualizações) : notifica
+
 @enduml
 ```
 
 ## 1.3. Fluxo Principal de Eventos
-1. O usuário acessa a tela de login do sistema.
-2. O sistema solicita que o usuário informe os dados
-   1. nome de usuário
-   2. senha
-3. O usuário insere suas credenciais.
-4. O sistema valida as credenciais fornecidas.
-5. Se as credenciais forem válidas, o sistema identifica o perfil do usuário e redireciona para a interface correspondente:
-   - Usuário comum: painel de usuário
-   - Administrador: painel administrativo
+1. O usuário realiza um cadastro, autenticando-se com o gov.br.
+2. O usuário realiza uma denúncia, apontando um problema público.
+	- Possiblita o anexo de arquivos (evidências) de diferentes mídias.
+3. A denúncia sofre uma análise dos moderadores do sistema, no qual, caso ela não esteja de acordo com as diretrizes, os moderadores poderão:
+	- Editar denúncia
+	- Excluir denúncia
+4. Pós confirmação da conformidade da denúncia com as diretrizes, um número de protocolo e o relatório geral da denúncia, são enviados ao usuário.
+5. O órgão responsável pela resolução do problema é acionado, recebendo o mesmo relatório geral da situação. 
+6. O órgão detém o direito de resposta, podendo assim enviar informações para usuário (denunciante).
+7. Após o período mínimo estabelecido, o usuário (denunciante) estará permitido a realizar um feedback acerca dos serviços prestados pela organização responsável pela resolução do problema relatado na denúncia.
+8. Assim como a denúncia, o feedback do usuário deve também receber uma análise dos moderadores. 
 
 ---
 
@@ -145,45 +140,85 @@ UC2 --> UC4 : [5 tentativas inválidas]
 
 ```plantuml
 @startuml
+
+|#lightblue|Usuário|
+|Sistema|
+|#lightgreen|Entidade|
+
+|Sistema|
 start
 
-:Exibir tela de login;
-:Usuário informa usuário e senha;
+|Usuário|
+:Autenticar via gov.br; <<procedure>>
+:Iniciar nova denúncia; <<procedure>>
 
-if (Campos preenchidos?) then (Sim)
-  :Validar credenciais;
+split
+  :Descrever o problema;
+split again
+  :Anexar arquivos;
+  |Sistema|
+  while (Arquivos compatíveis?) is (não)
+    :Solicitação do reenvio dos arquivos;
+    :Adição de novos arquivos; <<input>>
+  endwhile (sim)
+endsplit
 
-  if (Credenciais válidas?) then (Sim)
-    :Identificar perfil do usuário;
+:Confirmar e publicar denúncia;
+|Usuário|
+:Receber número de protocolo; <<input>>
+|Sistema|
+:Analisar conteúdo da denúncia; <<procedure>>
 
-    if (Primeiro acesso?) then (Sim)
-      :Solicitar troca de senha;
-      :Usuário troca a senha;
-    endif
+(A)
+note right
+  Início da verificação de conformidade com as diretrizes
+end note
+detach
 
-    if (Perfil == Administrador) then (Sim)
-      :Redirecionar para painel administrativo;
-    else
-      :Redirecionar para painel do usuário;
-    endif
+(B)
+note right
+  Pós verificação de conformidade com as diretrizes
+end note
+:Gerar e enviar relatório; <<output>>
 
-  else (Não)
-    :Exibir mensagem "Usuário ou senha incorretos";
-    :Incrementar contador de tentativas;
+fork
+  |Usuário|
+  :Receber relatório; <<input>>
+  :Enviar feedback;
+  |Sistema|
+  :Analisar feedback recebido; <<procedure>>
+  (A)
+  detach
 
-    if (Tentativas >= 5?) then (Sim)
-      :Bloquear conta por 15 minutos;
-    endif
+fork again
+  |Entidade|
+  :Receber relatório gerado; <<input>>
+  :Confirmar recebimento do feedback;
+  detach
+  |Sistema|
+  (B)
+end fork
 
-    :Retornar para tela de login;
-  endif
-
-else (Não)
-  :Exibir mensagem "Preencha todos os campos";
-  :Retornar para tela de login;
-endif
+|Entidade|
+:Emitir resposta à denúncia; <<procedure>>
 
 stop
+
+|Sistema|
+(A)
+if (Conforme diretrizes?) then (sim)
+  :Nenhuma ação necessária;
+else (não)
+  #red:<color:white>Editar ou excluir
+  <color:white>conteúdo denunciado;
+  :Notificar usuário sobre ação tomada;
+  stop
+endif
+
+
+(B)
+detach
+
 @enduml
 ```
 
