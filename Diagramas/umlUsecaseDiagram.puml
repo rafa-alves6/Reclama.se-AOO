@@ -1,19 +1,26 @@
 @startuml
+
 skinparam actorStyle awesome
-:cidadão: --> (registrar_problema)
-:cidadão: -up-> (realizar_feedback)
-:funcionário_agente: --> (responder_problema)
-:moderador: -down-> (avaliar_mensagens) <<include>>
 
-"Realizar Denúncia" as (registrar_problema)
-"Realizar um Feedback" as (realizar_feedback)
-"Responder Denúncia" as (responder_problema)
-"Avaliar Mensagens" as (avaliar_mensagens)
+actor "Usuário" as U
+actor "Órgão Responsável" as O
+actor "Sistema" as S
 
-"órgão" as :funcionário_agente:
-"suporte do Reclã.me" as :moderador:
+U --> (Cadastrar Usuário)
+U --> (Autenticar Usuário)
+U --> (Registrar Denúncia)
+U --> (Assinar Denúncia)
+U --> (Pesquisar Denúncia)
+U --> (Editar/Excluir Publicação)
 
-(realizar_feedback) ---> :funcionário_agente: : Feedback acerca \n da experiência geral \n do cidadão 
+S --> (Notificar Atualizações)
+S --> (Registrar Denúncia)
+S --> (Gerar Relatório)
+S --> (Editar/Excluir Publicação)
 
-(registrar_problema) <. (avaliar_mensagens) :include
+O --> (Responder Denúncia)
+
+(Registrar Denúncia) .down.> (Gerar Relatório) : gera
+(Registrar Denúncia) .down.> (Notificar Atualizações) : notifica
+
 @enduml
