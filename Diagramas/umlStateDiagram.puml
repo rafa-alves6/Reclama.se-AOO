@@ -1,0 +1,41 @@
+@startuml
+
+[*] --> AA : Login do usuário
+
+state "Aguardando Autenticação" as AA
+state "Ativo" as A
+AA --> A : Autenticação\nvia gov.br
+
+state "Registrando Denúncia" as D {
+    state "Denúncia Enviada" as DE
+    state "Denúncia Analisada" as DA
+    state "Denúncia Confirmada" as DC
+    state "Editado" as EDT
+    state "Excluído" as EXC
+
+    DE --> DA : Análise de denúncia
+
+    state choice1 <<choice>>
+
+    DA --> choice1
+    choice1 --> DC : De acordo com\ndiretrizes
+    choice1 --> EDT : Editado por\nusuário/moderador
+    choice1 --> EXC : Excluído por\nusuário/moderador
+
+    DC --> Saída : Relatório da denúncia
+    state Saída <<exitpoint>> #white
+    Saída --> RR
+
+    DC --> A
+    EDT --> A
+    EXC --> [*]
+}
+
+A --> DE : Nova denúncia
+
+state "Feedback Enviado" as FE
+A --> FE : Envio de feedback
+
+state "Relatório Recebido" as RR
+
+@enduml
