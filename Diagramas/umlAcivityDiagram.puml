@@ -1,10 +1,10 @@
 @startuml
-title Reclã.me - Fluxo de Denúncia
 
-|#lightblue|Órgão|
+|#lightblue|Usuário|
 |Sistema|
-|#lightgreen|Usuário|
+|#lightgreen|Entidade|
 
+|Sistema|
 start
 
 |Usuário|
@@ -14,58 +14,66 @@ start
 split
   :Descrever o problema;
 split again
-  :Anexar evidências (arquivos);
+  :Anexar arquivos;
   |Sistema|
   while (Arquivos compatíveis?) is (não)
-    :Solicitar reenvio dos arquivos;
-|Usuário|
-    :Adicionar novos arquivos; <<output>>
+    :Solicitação do reenvio dos arquivos;
+    :Adição de novos arquivos; <<input>>
   endwhile (sim)
 endsplit
 
-|Usuário|
 :Confirmar e publicar denúncia;
-
+|Usuário|
+:Receber número de protocolo; <<input>>
 |Sistema|
 :Analisar conteúdo da denúncia; <<procedure>>
 
-(A) 
+(A)
+note right
+  Início da verificação de conformidade com as diretrizes
+end note
 detach
 
-(B) 
+(B)
+note right
+  Pós verificação de conformidade com as diretrizes
+end note
 :Gerar e enviar relatório; <<output>>
 
 fork
   |Usuário|
   :Receber relatório; <<input>>
   :Enviar feedback;
-
   |Sistema|
   :Analisar feedback recebido; <<procedure>>
-
   (A)
   detach
 
-  (B)
+fork again
+  |Entidade|
+  :Receber relatório gerado; <<input>>
   :Confirmar recebimento do feedback;
   detach
-fork again
-  |Órgão|
-  :Receber relatório gerado; <<input>>
+  |Sistema|
+  (B)
 end fork
 
-|Órgão|
+|Entidade|
 :Emitir resposta à denúncia; <<procedure>>
 
 stop
 
 |Sistema|
 (A)
-if (Conforme diretrizes?) then (não)
-  #red:<color:white>Editar ou excluir\n<color:white>conteúdo denunciado;
-  :Notificar usuário sobre ação tomada; <<output>>
+if (Conforme diretrizes?) then (sim)
+  :Nenhuma ação necessária;
+else (não)
+  #red:<color:white>Editar ou excluir
+  <color:white>conteúdo denunciado;
+  :Notificar usuário sobre ação tomada;
   stop
 endif
+
 
 (B)
 detach
