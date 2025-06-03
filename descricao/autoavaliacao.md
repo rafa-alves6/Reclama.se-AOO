@@ -1,13 +1,9 @@
 # 🧠 Autoavaliação do Projeto - Avaliação Prática de AOO
 
-> - As **seções gerais** podem ser respondidas por qualquer membro do grupo.
-> - A seção **"Desempenho Individual"** deve ser preenchida por **cada aluno separadamente** e o **_commit_ com o texto deve ser feito pelo próprio aluno**.
-> - Trabalhos em que essa seção for preenchida por outra pessoa ou não houver histórico de _commit_ individual poderão ser **desconsiderados** nessa parte da avaliação.
-
 ## 🗂️ Organização do Grupo
 **1. Como o grupo organizou as atividades? Houve divisão de tarefas?**
 
-_Exemplo de resposta: Cada membro ficou responsável por um tipo de diagrama, com revisões cruzadas ao final._
+A maioria dos diagramas foram formulados em conjunto pelos integrantes do grupo, sendo que as ações realizadas de forma individual passaram por avaliação e aprovação dos demais integrantes. 
 
 ---
 
@@ -16,7 +12,7 @@ _Exemplo de resposta: Cada membro ficou responsável por um tipo de diagrama, co
 > Aqui cada usuário deverá realizar sua descrição e realizar o envio com o seu nome para ficar registrado no github
 
 - Nome 1: Erick Menezes
-    - Ações: Regras de Negócio; Diagrama de Estados
+    - Ações: Regras de Negócio; Diagrama de Estados;
 - Nome 2: 
 - Nome 3: 
 
@@ -28,11 +24,11 @@ _Exemplo de resposta: Cada membro ficou responsável por um tipo de diagrama, co
 **3. Como foi o planejamento e uso do tempo durante o desenvolvimento do projeto?**
 
 - [ ] Excelente (entregamos com folga e dentro do cronograma)
-- [ ] Bom (alguns atrasos, mas nada crítico)
+- [x] Bom (alguns atrasos, mas nada crítico)
 - [ ] Razoável (houve correria no final)
 - [ ] Ruim (atrasamos muito e isso prejudicou a entrega)
 
-_Justifique brevemente sua resposta:_  
+O processo de formulação dos diagramas, além do desenvolvimento dos requisitos, sofreu com alguns leves atrasos, consequentes da rotina e outros compromissos com prazos apertados.
 ...
 
 ---
@@ -50,15 +46,16 @@ _Justifique brevemente sua resposta:_
 **6. Como você avalia a qualidade do trabalho entregue?**
 
 - [ ] Excelente
-- [ ] Bom
+- [x] Bom
 - [ ] Regular
 - [ ] Abaixo do esperado
 
-_Justifique:_  
+O trabalho entregue está com um alto nível de qualidade, porém continuará sendo desenolvido para que atinja a o máximo de excelência possível.  
 ...
 
 ---
 
 ## ✍️ Sugestões para o professor
 **7. Alguma sugestão para melhorar este tipo de atividade ou avaliação no futuro?**  
+Apresentação de códigos referentes a uml durante a apresentação do slide do conteúdo, a fim de que aquleles que optam pelo método de codificação do diagrama possuam mais facilidade.
 ...
