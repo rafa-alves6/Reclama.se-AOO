@@ -11,7 +11,8 @@
 - RDN07 - O relatório deve conter os dados básicos da denúncia, os arquivos anexados, o tempo médio para resolução do problema, além de ser atualizado acerca do andamento da denúncia 
 - RDN08 - Após a denúncia, o órgão responsável deve ser contactado, recebendo o relatório completo gerado pelo sitema.
 - RDN09 - O sistema deve permitir que órgão realize uma resposta pública àquela denúncia
-- RDN10 - Caso as publicações realizadas pelo usuário não estejam de acordo com as diretrizes, o serviço de moderção deve ter a permissão de editar ou excluir as publicações. 
+- RDN10 - Caso as publicações realizadas pelo usuário não estejam de acordo com as diretrizes, o serviço de moderção deve ter a permissão de editar ou excluir as publicações.
+- RDN11 - O feedback realizado pelo usuário acerca dos serviços prestados pela organização responsável pela resolução do problema relatado na denúncia, só deve ser permitido após o tempo mínimo de 7 dias da publicação da denúncia.
 
 ## ✅ Requisitos Funcionais (RF)
 - RF01 – O sistema deve permitir o cadastro de um novo usuário.
@@ -23,6 +24,7 @@
 - RF07 – O sistema deve permitir que o órgão responsável registre uma resposta à denúncia.
 - RF08 – O sistema deve permitir a pesquisa de denúncias já registradas.
 - RF09 – O sistema deve notificar o usuário sobre atualizações relacionadas à sua denúncia.
+- RF10 – o sistema deve permitir que o usuário reaize um feedback acerca dos serviços prestados pelo órgão responsável após a denúncia. 
 
 ## :ballot_box_with_check: Requisitos Não Funcionais (RNF)
 - RNF01 - O sistema deve possibililtar o cadastro do usuário por login com o Google e/ou Facebook
