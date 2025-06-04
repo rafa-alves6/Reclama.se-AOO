@@ -66,12 +66,13 @@ Adm -> UCEx5
 
 ```plantuml
 @startuml
-title Reclã.me - Diagrama de Classes
+title Reclã.me - Diagrama de Classes 
 
 class Usuario {
   - id: int
   - nome: String
   - email: String
+  - status: String <<enum>> # ATIVO, INATIVO, BLOQUEADO
   + autenticar()
 }
 
@@ -84,13 +85,8 @@ class Moderador extends Usuario {
   + avaliarDenuncia()
 }
 
-class Agente extends Usuario {
-  + responderDenuncia()
-}
-
 Usuario -[hidden]-> Cidadao
 Usuario -[hidden]-> Moderador
-Usuario -[hidden]-> Agente
 
 class Denuncia {
   - id: int
@@ -105,24 +101,29 @@ class Feedback {
   - id: int
   - mensagem: String
   - data: Date
+  - status: String <<enum>> # ENVIADO, VISUALIZADO, ENCERRADO
   + enviar()
 }
+
 
 class Arquivo {
   - nome: String
   - tipo: String
   - tamanho: int
-  + ehCompativel(): boolean
+  - status: String <<enum>> # ADICIONADO, VALIDANDO, ACEITO, RECUSADO
+  + Compativel(): boolean
 }
+
 
 Denuncia --o Arquivo : contém
 
 class Avaliacao {
   - id: int
   - data: Date
-  - valida: boolean
+  - status: String <<enum>> # PENDENTE, VALIDADA, INVALIDA
   + avaliar()
 }
+
 
 class Resposta {
   - id: int
@@ -138,20 +139,16 @@ class Orgao {
   + emitirResposta()
 }
 
-
 Denuncia --o Avaliacao : avaliada_por
 Avaliacao --> Moderador : feita_por
 
 Denuncia --o Resposta : tem
 Resposta --> Orgao : emitida_por
-Resposta --> Agente : respondida_por
-
-Orgao "1" o-- "*" Agente : possui
-
 
 Cidadao --o Denuncia : faz
 Cidadao --o Feedback : envia
 @enduml
+
 ```
 
 
@@ -159,9 +156,11 @@ Cidadao --o Feedback : envia
 
 > Mostra os estados possíveis de cada entidade [ex: login] e as transições entre eles.
 
-| Nome                            | Finalidade / Obs  |
-| ------------------------------- | ----------------- |
-| [Status Usuário](./DE_login.md) | Status do usuário |
-| A2                              | B2                |
-| A3                              | B3                |
+| Nome                                       | Finalidade / Obs                            |
+| ------------------------------------------ | ------------------------------------------- |
+| [Status da Denúncia] (./DE_denuncia.md)    | Criada → Avaliada → Respondida → Finalizada |
+| [Status do Feedback] (./DE_feedback.md)    | Enviado → Visualizado → Encerrado           |
+| [Status do Usuário] (./DE_usuario.md)      | Ativo, Inativo, Bloqueado                   |
+| [Status da Avaliação] (./DE_avaliacao.md)  | Pendente → Avaliada                         |
+| [Status do Arquivo] (./DE_arquivo.md)      | Adicionado → Validando → Aceito ou Recusado |
 
