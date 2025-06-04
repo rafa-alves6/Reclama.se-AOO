@@ -66,61 +66,91 @@ Adm -> UCEx5
 
 ```plantuml
 @startuml
-skinparam groupInheritance 2
-abstract class Usuario {
-  + id: Integer <<PK>>
-  + nome: String
-  + email: String
-  + senhaHash: String
-  + dataCadastro: DateTime
-  + ultimoAcesso: DateTime
-  --
-  + autenticar(): Boolean
-  + solicitarTrocaSenha(): void
+title Reclã.me - Diagrama de Classes
+
+class Usuario {
+  - id: int
+  - nome: String
+  - email: String
+  + autenticar()
 }
 
-class Administrador {
-  + nivelAcesso: Integer
-  + desbloquearUsuario(): void
-  + excluirUsuario(): void
+class Cidadao extends Usuario {
+  + enviarDenuncia()
+  + enviarFeedback()
 }
 
-class UsuarioComum {
-  + preferencias: String
+class Moderador extends Usuario {
+  + avaliarDenuncia()
 }
 
-class StatusLogin{
-  + id: Integer <<PK>>
-  + tipo: Status
-  + dataAlteracao: DateTime
-  + motivo: String
-  --
-  + atualizarStatus(novoStatus: Status): void
+class Agente extends Usuario {
+  + responderDenuncia()
 }
 
-class TentativaLogin {
-  + id: Integer <<PK>>
-  + dataHora: DateTime
-  + ip: String
-  + sucesso: Boolean
+Usuario -[hidden]-> Cidadao
+Usuario -[hidden]-> Moderador
+Usuario -[hidden]-> Agente
+
+class Denuncia {
+  - id: int
+  - descricao: String
+  - status: String <<enum>> # PENDENTE, AVALIADA, RESPONDIDA
+  - dataCriacao: Date
+  + validarAnexos(): boolean
+  + publicar()
 }
 
-Usuario "1" *-- "1" StatusLogin
-Usuario "1" *-- "0..*" TentativaLogin
-
-Administrador --|> Usuario
-UsuarioComum --|> Usuario
-
-enum Status {
-  AGUARDANDO_CONFIRMACAO
-  ATIVO
-  BLOQUEADO
-  CANCELADO
-  EXCLUIDO
+class Feedback {
+  - id: int
+  - mensagem: String
+  - data: Date
+  + enviar()
 }
 
-Usuario "1" --> "1..*" Status
+class Arquivo {
+  - nome: String
+  - tipo: String
+  - tamanho: int
+  + ehCompativel(): boolean
+}
 
+Denuncia --o Arquivo : contém
+
+class Avaliacao {
+  - id: int
+  - data: Date
+  - valida: boolean
+  + avaliar()
+}
+
+class Resposta {
+  - id: int
+  - texto: String
+  - data: Date
+  + emitir()
+}
+
+class Orgao {
+  - id: int
+  - nome: String
+  - responsavel: String
+  + emitirResposta()
+}
+
+
+Denuncia --o Avaliacao : avaliada_por
+Avaliacao --> Moderador : feita_por
+
+Denuncia --o Resposta : tem
+Resposta --> Orgao : emitida_por
+Resposta --> Agente : respondida_por
+
+Orgao "1" o-- "*" Agente : possui
+
+
+Cidadao --o Denuncia : faz
+Cidadao --o Feedback : envia
 @enduml
 ```
 
