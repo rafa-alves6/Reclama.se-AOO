@@ -158,9 +158,9 @@ Cidadao --o Feedback : envia
 
 | Nome                                       | Finalidade / Obs                            |
 | ------------------------------------------ | ------------------------------------------- |
-| [Status da Denúncia] (./DE_denuncia.md)    | Criada → Avaliada → Respondida → Finalizada |
-| [Status do Feedback] (./DE_feedback.md)    | Enviado → Visualizado → Encerrado           |
-| [Status do Usuário] (./DE_usuario.md)      | Ativo, Inativo, Bloqueado                   |
-| [Status da Avaliação] (./DE_avaliacao.md)  | Pendente → Avaliada                         |
-| [Status do Arquivo] (./DE_arquivo.md)      | Adicionado → Validando → Aceito ou Recusado |
+| [Status da Denúncia](./DE_denuncia.md)    | Criada → Avaliada → Respondida → Finalizada |
+| [Status do Feedback](./DE_feedback.md)    | Enviado → Visualizado → Encerrado           |
+| [Status do Usuário](./DE_usuario.md)      | Ativo, Inativo, Bloqueado                   |
+| [Status da Avaliação](./DE_avaliacao.md)  | Pendente → Avaliada                         |
+| [Status do Arquivo](./DE_arquivo.md)      | Adicionado → Validando → Aceito ou Recusado |
 
