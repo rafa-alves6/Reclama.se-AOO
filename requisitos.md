@@ -7,7 +7,7 @@
 - RDN03 - Cada denúncia deve conter os dados básicos da denúncia: título, data, descrição (caracterizando o problema reportado e o local do ocorrido), tipo e status, sendo registrada por um usuário (denunciante).
 - RDN04 - O sistema deve manter os dados do denunciante totalmente ocultos, sem exibição para o público ou para os órgãos responsáveis, mesmo que a denúncia seja aceita.
 - RDN05 - Após a denúncia, o usuário deve receber uma confirmação automática e um número de protocolo.
-- RDN06 - Após a denúncia, o sistema deve geara um relatório
+- RDN06 - Após a denúncia, o sistema deve gerar um relatório
 - RDN07 - O relatório deve conter os dados básicos da denúncia, os arquivos anexados, o tempo médio para resolução do problema, além de ser atualizado acerca do andamento da denúncia 
 - RDN08 - Após a denúncia, o órgão responsável deve ser contactado, recebendo o relatório completo gerado pelo sitema.
 - RDN09 - O sistema deve permitir que órgão realize uma resposta pública àquela denúncia
