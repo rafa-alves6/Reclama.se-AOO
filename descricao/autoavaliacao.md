@@ -12,7 +12,7 @@ A maioria dos diagramas foram formulados em conjunto pelos integrantes do grupo,
 > Aqui cada usuário deverá realizar sua descrição e realizar o envio com o seu nome para ficar registrado no github
 
 - Nome 1: Erick Menezes
-    - Ações: Regras de Negócio; Diagrama de Estados;
+    - Ações: Regras de Negócio; Diagrama de Estados; Diagrama de Classes
 - Nome 2: 
 - Nome 3: 
 
