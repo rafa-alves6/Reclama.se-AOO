@@ -66,7 +66,7 @@ Adm -> UCEx5
 
 ```plantuml
 @startuml
-title Reclã.me - Diagrama de Classes 
+title Diagrama de Classes 
 
 class Usuario {
   - id: int
