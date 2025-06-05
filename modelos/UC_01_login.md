@@ -89,52 +89,56 @@ O --> (Responder Denúncia)
 ## 1.5. Fluxos de Exceção
 
 ### 1.5.1. a. Campos Vazios
-- Se o usuário tentar enviar o formulário com campos em branco:
+- Se o usuário tentar enviar a denúncia com campos obrigatórios em branco:
   - O sistema exibe uma mensagem: `"Preencha todos os campos obrigatórios."`
-  - O fluxo retorna para a etapa 2.
+  - O fluxo retorna para a etapa de preenchimento do formulário de denúncia.
 
-### 1.5.2. b. Falha de Conexão com o Servidor
-- Se houver falha de comunicação com o servidor de autenticação:
-  - O sistema exibe uma mensagem: `"Erro de conexão. Tente novamente mais tarde."`
-  - O sistema registra o incidente em log técnico.
-  - O fluxo é encerrado.
-
-### 1.5.3. c. Conta Bloqueada
-- Se o usuário exceder o número de tentativas de login permitidas:
-  - O sistema bloqueia temporariamente o login da conta.
-  - Uma mensagem é exibida: `"Conta temporariamente bloqueada por tentativas incorretas. Tente novamente após 15 minutos."`
-  - O fluxo é encerrado.
-
+### 1.5.2. b. Arquivo Anexado Incompatível
+- Se o usuário anexar um arquivo que não seja compatível:
+  - O sistema exibe uma mensagem: `"O arquivo anexado não é compatível. Por favor, anexe um arquivo em um dos seguintes formatos: .pdf, .png, .jpg, .docx, .mp4."`
+  - O fluxo retorna para a etapa de anexação de arquivos.
+    
 ---
 
 ## 1.6. Pré-condições
 - O sistema deve estar online e acessível.
-- O usuário deve possuir uma conta previamente registrada.
+- O usuário deve possuir uma conta previamente registrada com um cpf único.
+- O usuário deve estar autenticado para realizar qualquer ação no sistema.
+- O sistema deve ter a funcionalidade de notificar o usuário sobre o status de sua denúncia (notificação habilitada).
 
 ---
 
 ## 1.7. Pós-condições
 - O usuário está autenticado no sistema.
 - O acesso às funcionalidades está liberado conforme o perfil do usuário.
+- A denúncia foi registrada com sucesso no sistema, gerando um número de protocolo.
+- O sistema enviou um relatório da denúncia ao órgão responsável.
+- O feedback do usuário, se fornecido, foi processado e analisado pelos moderadores.
 
 ---
 
 ## 1.8. Regras de Negócio
-- Credenciais devem ser compostas por:
-  - Usuário: entre 4 e 20 caracteres alfanuméricos.
-  - Senha: mínimo de 8 caracteres, contendo letras e números.
-- Após 5 tentativas inválidas consecutivas, o sistema bloqueia o acesso por 15 minutos.
-- A autenticação define o perfil de acesso do usuário.
-- Usuários inativos não podem efetuar login.
-
+- Cada usuário deve possuir um único cpf válido cadastrado.
+- Todos os usuários devem estar cadastrados e logados para realizar uma denúncia.
+- Cada denúncia deve conter os dados básicos da denúncia: título, data, descrição (caracterizando o problema reportado e o local do ocorrido), tipo e status, sendo registrada por um usuário (denunciante).
+- O sistema deve manter os dados do denunciante totalmente ocultos, sem exibição para o público ou para os órgãos responsáveis, mesmo que a denúncia seja aceita.
+- Após a denúncia, o usuário deve receber uma confirmação automática e um número de protocolo.
+- Após a denúncia, o sistema deve gerar um relatório.
+- O relatório deve conter os dados básicos da denúncia, os arquivos anexados, o tempo médio para resolução do problema, além de ser atualizado acerca do andamento da denúncia.
+- Após a denúncia, o órgão responsável deve ser contactado, recebendo o relatório completo gerado pelo sitema.
+- O sistema deve permitir que órgão realize uma resposta pública àquela denúncia.
+- Caso as publicações realizadas pelo usuário não estejam de acordo com as diretrizes, o serviço de moderção deve ter a permissão de editar ou excluir as publicações.
+- O feedback realizado pelo usuário acerca dos serviços prestados pela organização responsável pela resolução do problema relatado na denúncia, só deve ser permitido após o tempo mínimo de 7 dias da publicação da denúncia.
+  
 ---
 
 ## 1.9. Perfis de Usuário
-| Perfil            | Descrição                                                 | Acesso ao sistema     |
-| ----------------- | --------------------------------------------------------- | --------------------- |
-| **Administrador** | Usuário com permissões avançadas de gerenciamento.        | Painel administrativo |
-| **Usuário comum** | Usuário com acesso limitado às suas próprias informações. | Painel do usuário     |
-| **Inativo**       | Usuário desativado ou bloqueado pelo administrador.       | Acesso negado         |
+| Perfil             | Descrição                                                                                   | Acesso ao sistema             |
+| ------------------ | ------------------------------------------------------------------------------------------- | ----------------------------- |
+| **Órgão/Entidade** | Representante de órgão público ou privado responsável pela resolução das denúncias.         | Painel administrativo         |
+| **Usuário comum**  | Cidadão comum, podendo registrar suas próprias denúncias, e dar feedback sobre as soluções. | Painel do usuário             |
+| **Moderador**      | Usuário com permissões de moderação, incluindo editar ou excluir denúncias.                 | Painel do usuário/funcionário |
+| **Inativo**        | Usuário desativado ou bloqueado pelo administrador.                                         | Acesso negado                 |
 
 ---
 
