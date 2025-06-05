@@ -1,0 +1,84 @@
+@startuml
+abstract class User {
+  - id: Integer <<PK>>
+  - nome: String
+  - cpf: String
+  - email: String
+  - telefone: String 
+  - dataNascimento: DateTime
+}
+
+class UserCidadao {
+  - denunciasEnviadas: List<Denuncia> 
+  - feedbacksEnviados: List<Feedback>
+  - denunciasCreditadas: List<Denuncia>
+  + registrarDenuncia(): Denuncia
+  + registrarFeedback(): Feedback
+  + creditarDenuncia(): void
+}
+
+class Moderador {
+  - dataAdmissao: DateTime
+  - dataDemissao: DateTime
+  - ativo: boolean
+}
+
+UserCidadao -up-|> User
+Moderador -up-|> User
+
+class Entidade {
+  - id: Integer <<PK>>
+  - nome: String
+  - email: String
+  - telefone: String
+  - statusAtivo: boolean 
+  - siteURL: String 
+  - dataFundado: DateTime
+  - denunciasRecebidas: List<Denuncia>
+  + responderDenuncia(): Denuncia
+  + responderFeedback(): Feedback
+}
+
+
+class EntidadePublica {
+} 
+
+class EntidadePrivada {
+  - cnpj: String
+}
+
+EntidadePublica -up-|> Entidade
+EntidadePrivada -up-|> Entidade
+
+class Mensagem {
+  - id: Integer <<PK>>
+  - titulo: String
+  - descricao: String
+  - denuncianteId: Integer
+  - tipo: String 
+  - data: DateTime
+}
+
+class Denuncia {
+  - denuncianteId: Integer
+  + gerarRelatorio(): void
+}
+
+class Feedback {
+  - denunciaId: Integer
+  - denuncianteId: Integer
+  - entidadeId: Integer
+}
+Denuncia -up-|> Mensagem
+Feedback -up-|> Mensagem 
+
+enum StatusDenuncia {
+  EM_ANALISE
+  REGISTRADA
+  SEM_RESPOSTA
+  EM_SOLUCAO
+  SOLUCIONADA
+}
+
+Denuncia --> StatusDenuncia
+@enduml

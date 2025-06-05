@@ -1,0 +1,35 @@
+@startuml
+
+skinparam actorStyle awesome
+
+actor "Usuário" as U
+actor "Órgão Responsável" as O
+actor "Sistema" as S
+actor "Moderador" as M
+actor "Cidadão" as C
+
+U --> C
+U --> M
+
+C --> (Cadastrar Usuário)
+C --> (Autenticar Usuário)
+C --> (Registrar Denúncia)
+C --> (Assinar Denúncia)
+C --> (Pesquisar Denúncia)
+C --> (Editar/Excluir Publicação)
+
+M --> (Pesquisar Denúncia)
+M --> (Editar/Excluir Publicação)
+M --> (Analisar Denúncia)
+
+S -up-> (Notificar Atualizações)
+S -up-> (Gerar Relatório)
+
+
+O --> (Responder Denúncia)
+O --> (Responder Feedback)
+
+(Registrar Denúncia) .down.> (Gerar Relatório) : gera
+(Registrar Denúncia) .down.> (Notificar Atualizações) : notifica
+
+@enduml
