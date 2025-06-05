@@ -1,83 +1,117 @@
 @startuml
-title Reclã.me - Diagrama de Classes 
+title Sistema de Denúncias - Diagrama de Classes Geral
 
-class Usuario {
+abstract class Usuario {
   - id: int
   - nome: String
   - email: String
-  - status: String <<enum>> # ATIVO, INATIVO, BLOQUEADO
-  + autenticar()
+  - status: StatusUsuario
+  --
+  + autenticar(): void
 }
 
 class Cidadao extends Usuario {
-  + enviarDenuncia()
-  + enviarFeedback()
+  + enviarDenuncia(): void
+  + enviarFeedback(): void
 }
 
 class Moderador extends Usuario {
-  + avaliarDenuncia()
+  + avaliarDenuncia(): void
 }
 
-Usuario -[hidden]-> Cidadao
-Usuario -[hidden]-> Moderador
 
 class Denuncia {
   - id: int
   - descricao: String
-  - status: String <<enum>> # PENDENTE, AVALIADA, RESPONDIDA
+  - status: StatusDenuncia
   - dataCriacao: Date
+  --
   + validarAnexos(): boolean
-  + publicar()
+  + publicar(): void
 }
-
-class Feedback {
-  - id: int
-  - mensagem: String
-  - data: Date
-  - status: String <<enum>> # ENVIADO, VISUALIZADO, ENCERRADO
-  + enviar()
-}
-
 
 class Arquivo {
   - nome: String
   - tipo: String
   - tamanho: int
-  - status: String <<enum>> # ADICIONADO, VALIDANDO, ACEITO, RECUSADO
-  + Compativel(): boolean
+  - status: StatusArquivo
+  --
+  + compativel(): boolean
 }
-
-
-Denuncia --o Arquivo : contém
 
 class Avaliacao {
   - id: int
   - data: Date
-  - status: String <<enum>> # PENDENTE, VALIDADA, INVALIDA
-  + avaliar()
+  - status: StatusAvaliacao
+  --
+  + avaliar(): void
 }
-
 
 class Resposta {
   - id: int
   - texto: String
   - data: Date
-  + emitir()
+  --
+  + emitir(): void
 }
 
 class Orgao {
   - id: int
   - nome: String
   - responsavel: String
-  + emitirResposta()
+  --
+  + emitirResposta(): void
 }
 
-Denuncia --o Avaliacao : avaliada_por
-Avaliacao --> Moderador : feita_por
+class Feedback {
+  - id: int
+  - mensagem: String
+  - data: Date
+  - status: StatusFeedback
+  --
+  + enviar(): void
+}
 
-Denuncia --o Resposta : tem
-Resposta --> Orgao : emitida_por
+
+enum StatusUsuario {
+  ATIVO
+  INATIVO
+  BLOQUEADO
+}
+
+enum StatusDenuncia {
+  PENDENTE
+  AVALIADA
+  RESPONDIDA
+}
+
+enum StatusArquivo {
+  ADICIONADO
+  VALIDANDO
+  ACEITO
+  RECUSADO
+}
+
+enum StatusAvaliacao {
+  PENDENTE
+  VALIDADA
+  INVALIDA
+}
+
+enum StatusFeedback {
+  ENVIADO
+  VISUALIZADO
+  ENCERRADO
+}
 
 Cidadao --o Denuncia : faz
 Cidadao --o Feedback : envia
+
+Denuncia --o Arquivo : contém
+Denuncia --o Avaliacao : avaliada_por
+Denuncia --o Resposta : tem
+
+Avaliacao --> Moderador : feita_por
+Resposta --> Orgao : emitida_por
+
 @enduml
