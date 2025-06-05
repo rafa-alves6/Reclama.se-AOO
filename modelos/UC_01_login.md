@@ -58,29 +58,31 @@ O --> (Responder Denúncia)
 ## 1.3. Fluxo Principal de Eventos
 1. O usuário realiza um cadastro, autenticando-se com o gov.br.
 2. O usuário realiza uma denúncia, apontando um problema público.
-	- Possiblita o anexo de arquivos (evidências) de diferentes mídias.
+	- Possibilita o anexo de arquivos (evidências) de diferentes mídias.
 3. A denúncia sofre uma análise dos moderadores do sistema, no qual, caso ela não esteja de acordo com as diretrizes, os moderadores poderão:
 	- Editar denúncia
 	- Excluir denúncia
-4. Pós confirmação da conformidade da denúncia com as diretrizes, um número de protocolo e o relatório geral da denúncia, são enviados ao usuário.
+4. Após confirmação da conformidade da denúncia com as diretrizes, um número de protocolo e o relatório geral da denúncia, são enviados ao usuário.
 5. O órgão responsável pela resolução do problema é acionado, recebendo o mesmo relatório geral da situação. 
 6. O órgão detém o direito de resposta, podendo assim enviar informações para usuário (denunciante).
 7. Após o período mínimo estabelecido, o usuário (denunciante) estará permitido a realizar um feedback acerca dos serviços prestados pela organização responsável pela resolução do problema relatado na denúncia.
-8. Assim como a denúncia, o feedback do usuário deve também receber uma análise dos moderadores. 
+8. Assim como a denúncia, o feedback do usuário também deve passar por uma análise dos moderadores.
 
 ---
 
 ## 1.4. Fluxos Alternativos
 
-### 1.4.1. a. Credenciais Inválidas
-1. O sistema detecta que as credenciais são inválidas.
-2. O sistema exibe uma mensagem de erro: `"Usuário ou senha incorretos."`
-3. O fluxo retorna para a etapa 2 do fluxo principal.
+### 1.4.1. a. Arquivos adicionados não compatíveis
+1. O sistema detecta que os arquivos anexados não são compatíveis.
+2. O sistema notifica o usuário sobre o ocorrido automaticamente.
+3. O sistema solicita novos arquivos.
+4. Caso os novos arquivos estejam corretos, segue para fluxo principal.
 
-### 1.4.2. b. Primeiro Acesso
-1. O sistema identifica que é o primeiro acesso do usuário.
-2. O sistema solicita a troca da senha temporária por uma nova.
-3. Após a troca, o usuário é redirecionado conforme seu perfil.
+### 1.4.2. b. Mensagens sem conformidade com as diretrizes
+1. O usuário envia sua mensagem (denúncia ou feedback).
+2. Os moderadores do sistema realizam a análise da mensagem.
+3. Caso elas estajem de acordo com as diretrizes, a mensagem é publicada normalmente.
+4. Caso não esteja de acordo com as diretrizes, o moderador realiza a edição ou exclusão da mensagem.
 
 ---
 
