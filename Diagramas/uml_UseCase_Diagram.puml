@@ -23,7 +23,6 @@ M --> (Editar/Excluir Publicação)
 M --> (Analisar Denúncia)
 
 S -up-> (Notificar Atualizações)
-S -up-> (Confirmar e Publicar Denúncia)
 S -up-> (Gerar Relatório)
 
 
