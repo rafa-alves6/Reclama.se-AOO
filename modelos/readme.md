@@ -66,89 +66,33 @@ Adm -> UCEx5
 
 ```plantuml
 @startuml
-title Diagrama de Classes 
+title Módulo de Usuário
 
-class Usuario {
+abstract class Usuario {
   - id: int
   - nome: String
   - email: String
-  - status: String <<enum>> # ATIVO, INATIVO, BLOQUEADO
-  + autenticar()
+  - status: StatusUsuario
+  --
+  + autenticar(): void
 }
 
 class Cidadao extends Usuario {
-  + enviarDenuncia()
-  + enviarFeedback()
+  + enviarDenuncia(): void
+  + enviarFeedback(): void
 }
 
 class Moderador extends Usuario {
-  + avaliarDenuncia()
-}
-
-Usuario -[hidden]-> Cidadao
-Usuario -[hidden]-> Moderador
-
-class Denuncia {
-  - id: int
-  - descricao: String
-  - status: String <<enum>> # PENDENTE, AVALIADA, RESPONDIDA
-  - dataCriacao: Date
-  + validarAnexos(): boolean
-  + publicar()
-}
-
-class Feedback {
-  - id: int
-  - mensagem: String
-  - data: Date
-  - status: String <<enum>> # ENVIADO, VISUALIZADO, ENCERRADO
-  + enviar()
+  + avaliarDenuncia(): void
 }
 
 
-class Arquivo {
-  - nome: String
-  - tipo: String
-  - tamanho: int
-  - status: String <<enum>> # ADICIONADO, VALIDANDO, ACEITO, RECUSADO
-  + Compativel(): boolean
+enum StatusUsuario {
+  ATIVO
+  INATIVO
+  BLOQUEADO
 }
-
-
-Denuncia --o Arquivo : contém
-
-class Avaliacao {
-  - id: int
-  - data: Date
-  - status: String <<enum>> # PENDENTE, VALIDADA, INVALIDA
-  + avaliar()
-}
-
-
-class Resposta {
-  - id: int
-  - texto: String
-  - data: Date
-  + emitir()
-}
-
-class Orgao {
-  - id: int
-  - nome: String
-  - responsavel: String
-  + emitirResposta()
-}
-
-Denuncia --o Avaliacao : avaliada_por
-Avaliacao --> Moderador : feita_por
-
-Denuncia --o Resposta : tem
-Resposta --> Orgao : emitida_por
-
-Cidadao --o Denuncia : faz
-Cidadao --o Feedback : envia
 @enduml
-
 ```
 
 
