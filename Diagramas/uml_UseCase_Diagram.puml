@@ -5,20 +5,30 @@ skinparam actorStyle awesome
 actor "Usuário" as U
 actor "Órgão Responsável" as O
 actor "Sistema" as S
+actor "Moderador" as M
+actor "Cidadão" as C
 
-U --> (Cadastrar Usuário)
-U --> (Autenticar Usuário)
-U --> (Registrar Denúncia)
-U --> (Assinar Denúncia)
-U --> (Pesquisar Denúncia)
-U --> (Editar/Excluir Publicação)
+U --> C
+U --> M
 
-S --> (Notificar Atualizações)
-S --> (Registrar Denúncia)
-S --> (Gerar Relatório)
-S --> (Editar/Excluir Publicação)
+C --> (Cadastrar Usuário)
+C --> (Autenticar Usuário)
+C --> (Registrar Denúncia)
+C --> (Assinar Denúncia)
+C --> (Pesquisar Denúncia)
+C --> (Editar/Excluir Publicação)
+
+M --> (Pesquisar Denúncia)
+M --> (Editar/Excluir Publicação)
+M --> (Analisar Denúncia)
+
+S -up-> (Notificar Atualizações)
+S -up-> (Confirmar e Publicar Denúncia)
+S -up-> (Gerar Relatório)
+
 
 O --> (Responder Denúncia)
+O --> (Responder Feedback)
 
 (Registrar Denúncia) .down.> (Gerar Relatório) : gera
 (Registrar Denúncia) .down.> (Notificar Atualizações) : notifica
