@@ -1,10 +1,15 @@
 @startuml
 title Estado da Denúncia
 
-[*] --> Criada
-Criada --> Avaliada : Moderador avalia
-Avaliada --> Respondida : Órgão responde
-Respondida --> Finalizada : Usuário confirma recebimento ou sistema encerra
-Finalizada --> [*]
+[*] --> REGISTRADA : Denúncia criada
+
+REGISTRADA --> EM_ANALISE : Moderador começa a avaliar
+EM_ANALISE --> SEM_RESPOSTA : Caso não tenha resposta ainda
+EM_ANALISE --> EM_SOLUCAO : Órgão começa a responder / resolver
+EM_SOLUCAO --> SOLUCIONADA : Problema resolvido
+SEM_RESPOSTA --> FINALIZADA : Sistema ou usuário finaliza
+SOLUCIONADA --> FINALIZADA : Usuário confirma encerramento
+
+FINALIZADA --> [*]
 
 @enduml
