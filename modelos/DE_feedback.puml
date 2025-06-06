@@ -1,8 +1,9 @@
 @startuml
 title Estado do Feedback
 
-[*] --> Enviado
-Enviado --> Visualizado : Orgão visualiza
-Visualizado --> Encerrado : Encerramento manual ou automático
-Encerrado --> [*]
+[*] --> ENVIADO : Feedback criado/enviado
+ENVIADO --> VISUALIZADO : Entidade visualiza o feedback
+VISUALIZADO --> ENCERRADO : Encerramento manual ou automático
+ENCERRADO --> [*]
+
 @enduml
