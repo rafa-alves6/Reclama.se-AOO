@@ -7,46 +7,39 @@
 ```puml
 @startuml
 
-left to right direction
+skinparam actorStyle awesome
+
+actor "Usuário" as U
+actor "Órgão Responsável" as O
+actor "Sistema" as S
+actor "Moderador" as M
+actor "Cidadão" as C
+
+U --> C
+U --> M
+
+C --> (Cadastrar Usuário)
+C --> (Autenticar Usuário)
+C --> (Registrar Denúncia)
+C --> (Assinar Denúncia)
+C --> (Pesquisar Denúncia)
+C --> (Editar/Excluir Publicação)
+
+M --> (Pesquisar Denúncia)
+M --> (Editar/Excluir Publicação)
+M --> (Analisar Denúncia)
+
+S -up-> (Notificar Atualizações)
+S -up-> (Gerar Relatório)
 
 
-actor "Usuário" as Usuario
-actor "Administrador" as Adm
-actor "Usuário Comum" as Comum
-actor Sistema as Sistema
+O --> (Responder Denúncia)
+O --> (Responder Feedback)
 
+(Registrar Denúncia) .down.> (Gerar Relatório) : gera
+(Registrar Denúncia) .down.> (Notificar Atualizações) : notifica
 
-Adm --|> Usuario
-Comum --|> Usuario
-
-
-rectangle "Sistema de Autenticação" {
-  usecase "Realizar login" as UC1
-}
-
-rectangle "Configurações e Otimizações" {
-  usecase "Realizar backup diário" as UCS1
-}
-usecase "Funçao 1" as UCEx1
-usecase "Funçao 2" as UCEx2
-usecase "Funçao 3" as UCEx3
-usecase "Funçao 4" as UCEx4
-usecase "Funçao 5" as UCEx5
-
-Usuario --> UC1
-Usuario --> UCEx1
-Usuario --> UCEx2
-Usuario --> UCEx4
-Usuario --> UCEx5
-Sistema -up-> UCS1
-Sistema -up-> UCEx3
-Sistema -up-> UCEx2
-Sistema -up-> UCEx5
-
-Adm -> UCS1
-Adm -> UCEx5
 @enduml
-
 ```
 
 ## Casos de Uso
@@ -54,11 +47,20 @@ Adm -> UCEx5
 >  Para cada item, apresentar: Nome, Atores, Fluxo principal, Fluxo alternativo, Pré-condições e Pós-condições, etc. 
 
 
-| Nome                               | Descrição breve             | Observações |
-| ---------------------------------- | --------------------------- | ----------- |
-| [Realizar Login](./UC_01_login.md) | Permite o acesso ao sistema | -           |
-| A2                                 | B2                          | C2          |
-| A3                                 | B3                          | C3          |
+| Nome                                   | Descrição breve                                               | Observações                        |
+| -------------------------------------- | ------------------------------------------------------------- | ---------------------------------- |
+| [Registrar Denúncia](./UC_Denuncia.md) | Permite ao usuário realizar uma denúncia pública              | Realizado por um usuário cidadão  |
+| [Cadastrar Usuário](./UC_Denuncia.md)  | Permite ao usuário se cadastrar ao sistema                    | Realizado pelo usuário, permitido pelo sistema |
+| [Autenticar Usuário](./UC_Denuncia.md) | Permite ao usuário realizar a autenticação                    | Autenticação realizada pelo usuário com o gov.br |
+| [Assinar Denúncia](./UC_Denuncia.md)   | Permite ao cidadão assinar/creditar uma denúncia existente    | Realizado por qualquer cidadão |
+| [Pesquisar Denúncia](./UC_Denuncia.md) | Permite a pesquisa de denúncias já registradas                | Disponível para Cidadão, Moderador |
+| [Editar/Excluir Publicação](./UC_Denuncia.md) | Permite ao usuário editar ou excluir uma denúncia ou publicação | Realizado por Moderador ou Cidadão (conforme permissões) |
+| [Analisar Denúncia](./UC_Denuncia.md)  | Permite ao Moderador analisar uma denúncia registrada         | Realizado por Moderador |
+| [Responder Denúncia](./UC_Denuncia.md) | Permite ao órgão responsável responder a uma denúncia         | Realizado pelo Órgão Responsável |
+| [Responder Feedback](./UC_Denuncia.md) | Permite ao órgão responsável responder ao feedback da denúncia | Realizado pelo Órgão Responsável |
+| [Notificar Atualizações](./UC_Denuncia.md) | Notifica o usuário sobre atualizações em denúncias         | Realizado pelo Sistema |
+| [Gerar Relatório](./UC_Denuncia.md)    | Permite ao sistema gerar relatórios sobre o estado das denúncias | Realizado pelo Sistema |
+
 
 ## 🔹 Diagrama de Classes
 
