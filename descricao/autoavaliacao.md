@@ -30,7 +30,6 @@ A maioria dos diagramas foram formulados em conjunto pelos integrantes do grupo,
 - [ ] Ruim (atrasamos muito e isso prejudicou a entrega)
 
 O processo de formulação dos diagramas, além do desenvolvimento dos requisitos, sofreu com alguns leves atrasos, consequentes da rotina e outros compromissos com prazos apertados.
-...
 
 ---
 
@@ -54,7 +53,6 @@ Ouvir visões de pessoas com diferentes tipos de experiência
 - [ ] Abaixo do esperado
 
 O trabalho entregue está com um alto nível de qualidade, porém continuará sendo desenolvido para que atinja a o máximo de excelência possível.  
-...
 
 ---
 
@@ -63,4 +61,4 @@ O trabalho entregue está com um alto nível de qualidade, porém continuará se
 Apresentação de códigos referentes a uml durante a apresentação do slide do conteúdo, a fim de que aquleles que optam pelo método de codificação do diagrama possuam mais facilidade.
 
 Seria interessante incluir um pequeno projeto usando UML, seja codificado ou apenas visualmente, para fixar noções dos diferentes tipos de diagramas 
-...
+
