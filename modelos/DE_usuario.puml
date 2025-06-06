@@ -1,10 +1,11 @@
 @startuml
 title Estado do Usuário
 
-[*] --> Ativo
-Ativo --> Inativo : Usuário se desativa ou por inatividade
-Inativo --> Ativo : Reativação
-Ativo --> Bloqueado : Por má conduta ou denúncia
-Bloqueado --> [*]
+[*] --> ATIVO : Criação/Ativação do usuário
+
+ATIVO --> INATIVO : Desativação ou inatividade
+INATIVO --> ATIVO : Reativação
+ATIVO --> BLOQUEADO : Má conduta ou denúncia
+BLOQUEADO --> [*] : Exclusão ou encerramento
 
 @enduml
