@@ -1,76 +1,104 @@
 @startuml
-abstract class User {
-  - id: Integer <<PK>>
+title Sistema de Denúncias - Diagrama de Classes
+
+abstract class Usuario {
+  - id: int <<PK>>
   - nome: String
   - cpf: String
   - email: String
   - telefone: String 
   - dataNascimento: DateTime
+  - status: StatusUsuario
+  --
+  + autenticar(): void
 }
 
-class UserCidadao {
+class Cidadao extends Usuario {
   - denunciasEnviadas: List<Denuncia> 
   - feedbacksEnviados: List<Feedback>
   - denunciasCreditadas: List<Denuncia>
-  + registrarDenuncia(): Denuncia
-  + registrarFeedback(): Feedback
+  --
+  + enviarDenuncia(): Denuncia
+  + enviarFeedback(): Feedback
   + creditarDenuncia(): void
 }
 
-class Moderador {
+class Moderador extends Usuario {
   - dataAdmissao: DateTime
   - dataDemissao: DateTime
-  - ativo: boolean
+  --
+  + avaliarDenuncia(): Avaliacao
 }
 
-UserCidadao -up-|> User
-Moderador -up-|> User
-
-class Entidade {
-  - id: Integer <<PK>>
-  - nome: String
-  - email: String
-  - telefone: String
+class Entidade extends Usuario {
   - statusAtivo: boolean 
   - siteURL: String 
   - dataFundado: DateTime
   - denunciasRecebidas: List<Denuncia>
-  + responderDenuncia(): Denuncia
+  --
+  + emitirResposta(): Resposta
   + responderFeedback(): Feedback
 }
 
+class EntidadePublica extends Entidade {
+}
 
-class EntidadePublica {
-} 
-
-class EntidadePrivada {
+class EntidadePrivada extends Entidade {
   - cnpj: String
 }
 
-EntidadePublica -up-|> Entidade
-EntidadePrivada -up-|> Entidade
-
-class Mensagem {
-  - id: Integer <<PK>>
+class Denuncia {
+  - id: int <<PK>>
   - titulo: String
   - descricao: String
-  - denuncianteId: Integer
-  - tipo: String 
   - data: DateTime
+  - status: StatusDenuncia
+  - arquivos: List<Arquivo>
+  --
+  + gerarRelatorio(): void
+  + publicar(): void
 }
 
-class Denuncia {
-  - denuncianteId: Integer
-  + gerarRelatorio(): void
+class Arquivo {
+  - nome: String
+  - tipo: String
+  - tamanho: int
+  - status: StatusArquivo
+  --
+  + compativel(): boolean
+}
+
+class Avaliacao {
+  - id: int
+  - data: Date
+  - status: StatusAvaliacao
+  -- 
+  + avaliar(): void
+}
+
+class Resposta {
+  - id: int
+  - texto: String
+  - data: Date
+  --
+  + emitir(): void
 }
 
 class Feedback {
-  - denunciaId: Integer
-  - denuncianteId: Integer
-  - entidadeId: Integer
+  - id: int
+  - mensagem: String
+  - data: Date
+  - status: StatusFeedback
+  --
+  + enviar(): void
 }
-Denuncia -up-|> Mensagem
-Feedback -up-|> Mensagem 
+
+' Enums
+enum StatusUsuario {
+  ATIVO
+  INATIVO
+  BLOQUEADO
+}
 
 enum StatusDenuncia {
   EM_ANALISE
@@ -80,5 +108,49 @@ enum StatusDenuncia {
   SOLUCIONADA
 }
 
+enum StatusArquivo {
+  ADICIONADO
+  VALIDANDO
+  ACEITO
+  RECUSADO
+}
+
+enum StatusAvaliacao {
+  PENDENTE
+  VALIDADA
+  INVALIDA
+}
+
+enum StatusFeedback {
+  ENVIADO
+  VISUALIZADO
+  ENCERRADO
+}
+
+' Relacionamentos
+Cidadao --o Denuncia : envia
+Cidadao --o Feedback : envia
+Cidadao --o Denuncia : credita
+Denuncia --> Arquivo : possui
+Denuncia --> Resposta : recebe
+Denuncia --> Moderador : avaliada_por
+Denuncia --> Avaliacao : avaliada_por
+Feedback --> Avaliacao : avaliada_por
+Avaliacao --> Moderador : feita_por
+Resposta --> Entidade : emitida_por
+Feedback --> Denuncia
+Feedback --> Entidade
+
+Usuario --> StatusUsuario
 Denuncia --> StatusDenuncia
+Arquivo --> StatusArquivo
+Avaliacao --> StatusAvaliacao
+Feedback --> StatusFeedback
+
+' Nota
+note right of Feedback
+  Feedback só pode ser criado/enviado
+  após a Denúncia estar em estado
+  EM_SOLUCAO, SOLUCIONADA ou SEM_RESPOSTA.
+end note
 @enduml
