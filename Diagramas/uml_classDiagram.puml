@@ -12,8 +12,8 @@ class UserCidadao {
   - denunciasEnviadas: List<Denuncia> 
   - feedbacksEnviados: List<Feedback>
   - denunciasCreditadas: List<Denuncia>
-  + registrarDenuncia(): Denuncia
-  + registrarFeedback(): Feedback
+  + registrarDenuncia(): Mensagem
+  + registrarFeedback(): Mensagem
   + creditarDenuncia(): void
 }
 
@@ -69,6 +69,7 @@ class Feedback {
   - denuncianteId: Integer
   - entidadeId: Integer
 }
+
 Denuncia -up-|> Mensagem
 Feedback -up-|> Mensagem 
 
@@ -80,5 +81,11 @@ enum StatusDenuncia {
   SOLUCIONADA
 }
 
-Denuncia --> StatusDenuncia
+Denuncia --> StatusDenuncia : 1..1
+UserCidadao "1..*" --> "1..*" Denuncia : envia
+UserCidadao "1..*" --> "1..*" Feedback : envia
+Entidade "1..*" --> "1..*" Denuncia : recebe
+Entidade "1..*" --> "1..*" Feedback : responde
+Denuncia "1..*" --> "1..*" Feedback : gera
+
 @enduml
