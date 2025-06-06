@@ -7,9 +7,7 @@ REGISTRADA --> EM_ANALISE : Moderador começa a avaliar
 EM_ANALISE --> SEM_RESPOSTA : Caso não tenha resposta ainda
 EM_ANALISE --> EM_SOLUCAO : Órgão começa a responder / resolver
 EM_SOLUCAO --> SOLUCIONADA : Problema resolvido
-SEM_RESPOSTA --> FINALIZADA : Sistema ou usuário finaliza
-SOLUCIONADA --> FINALIZADA : Usuário confirma encerramento
-
-FINALIZADA --> [*]
+SEM_RESPOSTA --> [*] : Sistema ou usuário finaliza
+SOLUCIONADA --> [*] : Usuário confirma encerramento
 
 @enduml
