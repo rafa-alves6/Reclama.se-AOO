@@ -73,7 +73,10 @@ title Módulo de Usuário
 abstract class Usuario {
   - id: int
   - nome: String
+  - cpf: String
   - email: String
+  - telefone: String
+  - dataNascimento: DateTime
   - status: StatusUsuario
   --
   + autenticar(): void
@@ -82,18 +85,23 @@ abstract class Usuario {
 class Cidadao extends Usuario {
   + enviarDenuncia(): void
   + enviarFeedback(): void
+  + creditarDenuncia(): void
 }
 
 class Moderador extends Usuario {
+  - dataAdmissao: DateTime
+  - dataDemissao: DateTime
   + avaliarDenuncia(): void
 }
-
 
 enum StatusUsuario {
   ATIVO
   INATIVO
   BLOQUEADO
 }
+
+
+
 @enduml
 ```
 
@@ -102,11 +110,11 @@ enum StatusUsuario {
 
 > Mostra os estados possíveis de cada entidade [ex: login] e as transições entre eles.
 
-| Nome                                       | Finalidade / Obs                            |
-| ------------------------------------------ | ------------------------------------------- |
-| [Status da Denúncia](./DE_denuncia.puml)    | Criada → Avaliada → Respondida → Finalizada |
-| [Status do Feedback](./DE_feedback.puml)    | Enviado → Visualizado → Encerrado           |
-| [Status do Usuário](./DE_usuario.puml)      | Ativo, Inativo, Bloqueado                   |
-| [Status da Avaliação](./DE_avaliacao.puml)  | Pendente → Avaliada                         |
-| [Status do Arquivo](./DE_arquivo.puml)      | Adicionado → Validando → Aceito ou Recusado |
+| Nome                                       | Finalidade / Obs                                                   |
+| ------------------------------------------ | -------------------------------------------------------------------|
+| [Status da Denúncia](./DE_denuncia.puml)    | REGISTRADA → EM_ANALISE → EM_SOLUCAO / SEM_RESPOSTA → SOLUCIONADA |
+| [Status do Feedback](./DE_feedback.puml)    | ENVIADO → VISUALIZADO → ENCERRADO                                 |
+| [Status do Usuário](./DE_usuario.puml)      | ATIVO → INATIVO → BLOQUEADO                                       |
+| [Status da Avaliação](./DE_avaliacao.puml)  | PENDENTE → VALIDADA ou INVALIDA                                   |
+| [Status do Arquivo](./DE_arquivo.puml)      | ADICIONADO → VALIDANDO → ACEITO ou RECUSADO                       |
 
