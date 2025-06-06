@@ -1,11 +1,13 @@
 @startuml
 title Estado do Arquivo Anexado
 
-[*] --> Adicionado
-Adicionado --> Validando : Sistema verifica compatibilidade
-Validando --> Aceito : Arquivo é compatível
-Validando --> Recusado : Arquivo é incompatível
-Aceito --> [*]
-Recusado --> [*]
+[*] --> ADICIONADO : Upload do arquivo
+
+ADICIONADO --> VALIDANDO : Sistema verifica compatibilidade
+VALIDANDO --> ACEITO : Arquivo compatível
+VALIDANDO --> RECUSADO : Arquivo incompatível
+
+ACEITO --> [*] : Arquivo aceito e utilizado
+RECUSADO --> [*] : Arquivo rejeitado
 
 @enduml
