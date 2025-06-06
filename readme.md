@@ -13,7 +13,6 @@ O Reclama.se busca visibilizar os problemas enfrentados por todas as camadas da 
 - [requisitos.md](requisitos.md): Lista de requisitos funcionais e não funcionais.
 - [modelos/](./modelos/readme.md): Diagramas UML utilizados (caso de uso, atividades, classes, estados).
 - [autoavaliacao.md](./descricao/autoavaliacao.md): Reflexão individual ou do grupo sobre o projeto.
-- [requisitos.md](./requisitos.md): Detalhe dos requisitos dos sistema.
 
 ## 🛠️ Tecnologias e Ferramentas
 - Para a criação dos diagramas UML, usamos o [PlantUML](https://plantuml.com/).
