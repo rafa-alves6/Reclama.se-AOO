@@ -38,7 +38,7 @@ O processo de formulação dos diagramas, além do desenvolvimento dos requisito
 Unir diferentes ideias e formas de enxergar um sistema a fim de entregar uma única visão;
 Desenvolvimento colaborativo usando Git/Github
 
-** 5. E pessoal (relacionado a trabalho em grupo, organização, etc)?**  
+**5. E pessoal (relacionado a trabalho em grupo, organização, etc)?**  
 Aprender a separar tarefas para a equipe;
 Ouvir visões de pessoas com diferentes tipos de experiência
 
