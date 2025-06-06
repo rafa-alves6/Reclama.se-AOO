@@ -15,8 +15,8 @@ A maioria dos diagramas foram formulados em conjunto pelos integrantes do grupo,
     - Ações: Regras de Negócio; Diagrama de Estados; Diagrama de Classes
 - Nome 2: João Rafael
     - Ações: Elaboração de diagramas de atividades e de caso de uso; Definição de regras de negócio
-- Nome 3: 
-
+- Nome 3: Luiz Eduardo da Silva Albuquerque
+    - Ações: Requisitos Funcionais; Requisitos Não Funcionais ; Diagrama de Estados; Diagrama de Classes ; Participacão na Etapa Inicial do desenvolvimento dos demais Diagramas
 
 
 ---
@@ -25,7 +25,7 @@ A maioria dos diagramas foram formulados em conjunto pelos integrantes do grupo,
 **3. Como foi o planejamento e uso do tempo durante o desenvolvimento do projeto?**
 
 - [ ] Excelente (entregamos com folga e dentro do cronograma)
-- [x] Bom (alguns atrasos, mas nada crítico)
+- [X] Bom (alguns atrasos, mas nada crítico)
 - [ ] Razoável (houve correria no final)
 - [ ] Ruim (atrasamos muito e isso prejudicou a entrega)
 
@@ -37,10 +37,12 @@ O processo de formulação dos diagramas, além do desenvolvimento dos requisito
 **4. Qual o principal aprendizado técnico que você tirou deste trabalho?**  
 Unir diferentes ideias e formas de enxergar um sistema a fim de entregar uma única visão;
 Desenvolvimento colaborativo usando Git/Github
+Aprendi a organizar e modelar estados e classes de forma clara e consistente.
 
 **5. E pessoal (relacionado a trabalho em grupo, organização, etc)?**  
 Aprender a separar tarefas para a equipe;
 Ouvir visões de pessoas com diferentes tipos de experiência
+Aprendi a trabalhar com pessoas diferentes, valorizando a comunicação.
 
 ---
 
@@ -48,7 +50,7 @@ Ouvir visões de pessoas com diferentes tipos de experiência
 **6. Como você avalia a qualidade do trabalho entregue?**
 
 - [ ] Excelente
-- [x] Bom
+- [X] Bom
 - [ ] Regular
 - [ ] Abaixo do esperado
 
@@ -61,4 +63,6 @@ O trabalho entregue está com um alto nível de qualidade, porém continuará se
 Apresentação de códigos referentes a uml durante a apresentação do slide do conteúdo, a fim de que aquleles que optam pelo método de codificação do diagrama possuam mais facilidade.
 
 Seria interessante incluir um pequeno projeto usando UML, seja codificado ou apenas visualmente, para fixar noções dos diferentes tipos de diagramas 
+
+Desenvolver um sistema simples a partir dos diagramas UML, para conectar teoria e prática.
 
