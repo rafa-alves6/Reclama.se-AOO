@@ -54,11 +54,11 @@ Adm -> UCEx5
 >  Para cada item, apresentar: Nome, Atores, Fluxo principal, Fluxo alternativo, Pré-condições e Pós-condições, etc. 
 
 
-| Nome                               | Descrição breve             | Observações |
-| ---------------------------------- | --------------------------- | ----------- |
-| [Realizar Login](./UC_01_login.md) | Permite o acesso ao sistema | -           |
-| A2                                 | B2                          | C2          |
-| A3                                 | B3                          | C3          |
+| Nome                                   | Descrição breve                                               | Observações                     |
+| -------------------------------------- | ------------------------------------------------------------- | ------------------------------- |
+| [Registrar Denúncia](./UC_Denuncia.md) | Permite ao usuário realizar uma denúncia pública              |                                 |
+| A2                                     | B2                                                            | C2                              |
+| A3                                     | B3                                                            | C3                              |
 
 ## 🔹 Diagrama de Classes
 
