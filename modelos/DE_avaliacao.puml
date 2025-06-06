@@ -1,13 +1,12 @@
 @startuml
 title Estado da Avaliação da Denúncia
 
-[*] --> Pendente
-Pendente --> Avaliada : Moderador analisa conteúdo
-Avaliada --> [*]
+[*] --> PENDENTE : Avaliação aguardando análise
 
-state Avaliada {
-  [*] --> Válida
-  [*] --> Inválida
-}
+PENDENTE --> VALIDADA : Moderador aprova avaliação
+PENDENTE --> INVALIDA : Moderador rejeita avaliação
+
+VALIDADA --> [*] : Avaliação concluída como válida
+INVALIDA --> [*] : Avaliação concluída como inválida
 
 @enduml
