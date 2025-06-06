@@ -13,7 +13,8 @@ A maioria dos diagramas foram formulados em conjunto pelos integrantes do grupo,
 
 - Nome 1: Erick Menezes
     - Ações: Regras de Negócio; Diagrama de Estados; Diagrama de Classes
-- Nome 2: 
+- Nome 2: João Rafael
+    - Ações: Elaboração de diagramas de atividades e de caso de uso; Definição de regras de negócio
 - Nome 3: 
 
 
@@ -35,10 +36,12 @@ O processo de formulação dos diagramas, além do desenvolvimento dos requisito
 
 ## 📚 Aprendizados
 **4. Qual o principal aprendizado técnico que você tirou deste trabalho?**  
-...
+Unir diferentes ideias e formas de enxergar um sistema a fim de entregar uma única visão;
+Desenvolvimento colaborativo usando Git/Github
 
-**5. E pessoal (relacionado a trabalho em grupo, organização, etc)?**  
-...
+** 5. E pessoal (relacionado a trabalho em grupo, organização, etc)?**  
+Aprender a separar tarefas para a equipe;
+Ouvir visões de pessoas com diferentes tipos de experiência
 
 ---
 
@@ -58,4 +61,6 @@ O trabalho entregue está com um alto nível de qualidade, porém continuará se
 ## ✍️ Sugestões para o professor
 **7. Alguma sugestão para melhorar este tipo de atividade ou avaliação no futuro?**  
 Apresentação de códigos referentes a uml durante a apresentação do slide do conteúdo, a fim de que aquleles que optam pelo método de codificação do diagrama possuam mais facilidade.
+
+Seria interessante incluir um pequeno projeto usando UML, seja codificado ou apenas visualmente, para fixar noções dos diferentes tipos de diagramas 
 ...
