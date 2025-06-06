@@ -64,18 +64,18 @@ O --> (Responder Feedback)
 
 ## 🔹 Diagrama de Classes
 
-### Módulo de Usuário
+### Diagrama Geral do Sistema
 
 ```plantuml
 @startuml
-title Módulo de Usuário
+title Sistema de Denúncias - Diagrama de Classes
 
 abstract class Usuario {
-  - id: int
+  - id: int <<PK>>
   - nome: String
   - cpf: String
   - email: String
-  - telefone: String
+  - telefone: String 
   - dataNascimento: DateTime
   - status: StatusUsuario
   --
@@ -83,25 +83,145 @@ abstract class Usuario {
 }
 
 class Cidadao extends Usuario {
-  + enviarDenuncia(): void
-  + enviarFeedback(): void
+  - denunciasEnviadas: List<Denuncia> 
+  - feedbacksEnviados: List<Feedback>
+  - denunciasCreditadas: List<Denuncia>
+  --
+  + enviarDenuncia(): Denuncia
+  + enviarFeedback(): Feedback
   + creditarDenuncia(): void
 }
 
 class Moderador extends Usuario {
   - dataAdmissao: DateTime
   - dataDemissao: DateTime
-  + avaliarDenuncia(): void
+  --
+  + avaliarDenuncia(): Avaliacao
 }
 
+class Entidade extends Usuario {
+  - statusAtivo: boolean 
+  - siteURL: String 
+  - dataFundado: DateTime
+  - denunciasRecebidas: List<Denuncia>
+  --
+  + emitirResposta(): Resposta
+  + responderFeedback(): Feedback
+}
+
+class EntidadePublica extends Entidade {
+}
+
+class EntidadePrivada extends Entidade {
+  - cnpj: String
+}
+
+class Denuncia {
+  - id: int <<PK>>
+  - titulo: String
+  - descricao: String
+  - data: DateTime
+  - status: StatusDenuncia
+  - arquivos: List<Arquivo>
+  --
+  + gerarRelatorio(): void
+  + publicar(): void
+}
+
+class Arquivo {
+  - nome: String
+  - tipo: String
+  - tamanho: int
+  - status: StatusArquivo
+  --
+  + compativel(): boolean
+}
+
+class Avaliacao {
+  - id: int
+  - data: Date
+  - status: StatusAvaliacao
+  -- 
+  + avaliar(): void
+}
+
+class Resposta {
+  - id: int
+  - texto: String
+  - data: Date
+  --
+  + emitir(): void
+}
+
+class Feedback {
+  - id: int
+  - mensagem: String
+  - data: Date
+  - status: StatusFeedback
+  --
+  + enviar(): void
+}
+
+' Enums
 enum StatusUsuario {
   ATIVO
   INATIVO
   BLOQUEADO
 }
 
+enum StatusDenuncia {
+  EM_ANALISE
+  REGISTRADA
+  SEM_RESPOSTA
+  EM_SOLUCAO
+  SOLUCIONADA
+}
 
+enum StatusArquivo {
+  ADICIONADO
+  VALIDANDO
+  ACEITO
+  RECUSADO
+}
 
+enum StatusAvaliacao {
+  PENDENTE
+  VALIDADA
+  INVALIDA
+}
+
+enum StatusFeedback {
+  ENVIADO
+  VISUALIZADO
+  ENCERRADO
+}
+
+' Relacionamentos
+Cidadao --o Denuncia : envia
+Cidadao --o Feedback : envia
+Cidadao --o Denuncia : credita
+Denuncia --> Arquivo : possui
+Denuncia --> Resposta : recebe
+Denuncia --> Moderador : avaliada_por
+Denuncia --> Avaliacao : avaliada_por
+Feedback --> Avaliacao : avaliada_por
+Avaliacao --> Moderador : feita_por
+Resposta --> Entidade : emitida_por
+Feedback --> Denuncia
+Feedback --> Entidade
+
+Usuario --> StatusUsuario
+Denuncia --> StatusDenuncia
+Arquivo --> StatusArquivo
+Avaliacao --> StatusAvaliacao
+Feedback --> StatusFeedback
+
+' Nota
+note right of Feedback
+  Feedback só pode ser criado/enviado
+  após a Denúncia estar em estado
+  EM_SOLUCAO, SOLUCIONADA ou SEM_RESPOSTA.
+end note
 @enduml
 ```
 
