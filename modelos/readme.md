@@ -2,8 +2,6 @@
 
 ## Visão Geral do Sistema
 
-> Adicionar o diagrama de caso de uso que mostra a visão geral do sistema
-
 ```puml
 @startuml
 
@@ -47,11 +45,20 @@ O --> (Responder Feedback)
 >  Para cada item, apresentar: Nome, Atores, Fluxo principal, Fluxo alternativo, Pré-condições e Pós-condições, etc. 
 
 
-| Nome                                   | Descrição breve                                               | Observações                     |
-| -------------------------------------- | ------------------------------------------------------------- | ------------------------------- |
-| [Registrar Denúncia](./UC_Denuncia.md) | Permite ao usuário realizar uma denúncia pública              |                                 |
-| A2                                     | B2                                                            | C2                              |
-| A3                                     | B3                                                            | C3                              |
+| Nome                                   | Descrição breve                                               | Observações                        |
+| -------------------------------------- | ------------------------------------------------------------- | ---------------------------------- |
+| [Registrar Denúncia](./UC_Denuncia.md) | Permite ao usuário realizar uma denúncia pública              | Realizado por um usuário cidadão  |
+| [Cadastrar Usuário](./UC_Denuncia.md)  | Permite ao usuário se cadastrar ao sistema                    | Realizado pelo usuário, permitido pelo sistema |
+| [Autenticar Usuário](./UC_Denuncia.md) | Permite ao usuário realizar a autenticação                    | Autenticação realizada pelo usuário com o gov.br |
+| [Assinar Denúncia](./UC_Denuncia.md)   | Permite ao cidadão assinar/creditar uma denúncia existente    | Realizado por qualquer cidadão |
+| [Pesquisar Denúncia](./UC_Denuncia.md) | Permite a pesquisa de denúncias já registradas                | Disponível para Cidadão, Moderador |
+| [Editar/Excluir Publicação](./UC_Denuncia.md) | Permite ao usuário editar ou excluir uma denúncia ou publicação | Realizado por Moderador ou Cidadão (conforme permissões) |
+| [Analisar Denúncia](./UC_Denuncia.md)  | Permite ao Moderador analisar uma denúncia registrada         | Realizado por Moderador |
+| [Responder Denúncia](./UC_Denuncia.md) | Permite ao órgão responsável responder a uma denúncia         | Realizado pelo Órgão Responsável |
+| [Responder Feedback](./UC_Denuncia.md) | Permite ao órgão responsável responder ao feedback da denúncia | Realizado pelo Órgão Responsável |
+| [Notificar Atualizações](./UC_Denuncia.md) | Notifica o usuário sobre atualizações em denúncias         | Realizado pelo Sistema |
+| [Gerar Relatório](./UC_Denuncia.md)    | Permite ao sistema gerar relatórios sobre o estado das denúncias | Realizado pelo Sistema |
+
 
 ## 🔹 Diagrama de Classes
 
@@ -59,68 +66,100 @@ O --> (Responder Feedback)
 
 ```plantuml
 @startuml
-skinparam groupInheritance 2
-abstract class Usuario {
-  + id: Integer <<PK>>
-  + nome: String
-  + email: String
-  + senhaHash: String
-  + dataCadastro: DateTime
-  + ultimoAcesso: DateTime
-  --
-  + autenticar(): Boolean
-  + solicitarTrocaSenha(): void
+abstract class User {
+  - id: Integer <<PK>>
+  - nome: String
+  - cpf: String
+  - email: String
+  - telefone: String 
+  - dataNascimento: DateTime
 }
 
-class Administrador {
-  + nivelAcesso: Integer
-  + desbloquearUsuario(): void
-  + excluirUsuario(): void
+class UserCidadao {
+  - denunciasEnviadas: List<Denuncia> 
+  - feedbacksEnviados: List<Feedback>
+  - denunciasCreditadas: List<Denuncia>
+  + registrarDenuncia(): Mensagem
+  + registrarFeedback(): Mensagem
+  + creditarDenuncia(): void
 }
 
-class UsuarioComum {
-  + preferencias: String
+class Moderador {
+  - dataAdmissao: DateTime
+  - dataDemissao: DateTime
+  - ativo: boolean
 }
 
-class StatusLogin{
-  + id: Integer <<PK>>
-  + tipo: Status
-  + dataAlteracao: DateTime
-  + motivo: String
-  --
-  + atualizarStatus(novoStatus: Status): void
+UserCidadao -up-|> User
+Moderador -up-|> User
+
+class Entidade {
+  - id: Integer <<PK>>
+  - nome: String
+  - email: String
+  - telefone: String
+  - statusAtivo: boolean 
+  - siteURL: String 
+  - dataFundado: DateTime
+  - denunciasRecebidas: List<Denuncia>
+  + responderDenuncia(): Denuncia
+  + responderFeedback(): Feedback
 }
 
-class TentativaLogin {
-  + id: Integer <<PK>>
-  + dataHora: DateTime
-  + ip: String
-  + sucesso: Boolean
+
+class EntidadePublica {
+} 
+
+class EntidadePrivada {
+  - cnpj: String
 }
 
-Usuario "1" *-- "1" StatusLogin
-Usuario "1" *-- "0..*" TentativaLogin
+EntidadePublica -up-|> Entidade
+EntidadePrivada -up-|> Entidade
 
-Administrador --|> Usuario
-UsuarioComum --|> Usuario
-
-enum Status {
-  AGUARDANDO_CONFIRMACAO
-  ATIVO
-  BLOQUEADO
-  CANCELADO
-  EXCLUIDO
+class Mensagem {
+  - id: Integer <<PK>>
+  - titulo: String
+  - descricao: String
+  - denuncianteId: Integer
+  - tipo: String 
+  - data: DateTime
 }
 
-Usuario "1" --> "1..*" Status
+class Denuncia {
+  - denuncianteId: Integer
+  + gerarRelatorio(): void
+}
+
+class Feedback {
+  - denunciaId: Integer
+  - denuncianteId: Integer
+  - entidadeId: Integer
+}
+
+Denuncia -up-|> Mensagem
+Feedback -up-|> Mensagem 
+
+enum StatusDenuncia {
+  EM_ANALISE
+  REGISTRADA
+  SEM_RESPOSTA
+  EM_SOLUCAO
+  SOLUCIONADA
+}
+
+Denuncia --> StatusDenuncia : 1..1
+UserCidadao "1..*" --> "1..*" Denuncia : envia
+UserCidadao "1..*" --> "1..*" Feedback : envia
+Entidade "1..*" --> "1..*" Denuncia : recebe
+Entidade "1..*" --> "1..*" Feedback : responde
+Denuncia "1..*" --> "1..*" Feedback : gera
 
 @enduml
 ```
 
 
 ## 🔹 Diagrama de Estados
-
-> Mostra os estados possíveis de cada entidade [ex: login] e as transições entre eles.
 
 | Nome                            | Finalidade / Obs  |
 | ------------------------------- | ----------------- |
