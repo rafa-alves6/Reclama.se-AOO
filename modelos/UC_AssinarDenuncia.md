@@ -4,12 +4,9 @@
 	- [1.2. Visão Geral](#12-visão-geral)
 	- [1.3. Fluxo Principal de Eventos](#13-fluxo-principal-de-eventos)
 	- [1.4. Fluxos Alternativos](#14-fluxos-alternativos)
-		- [1.4.1. a. Credenciais Inválidas](#141-a-credenciais-inválidas)
-		- [1.4.2. b. Primeiro Acesso](#142-b-primeiro-acesso)
+		- [1.4.1. a. Credenciais Inválidas](#141-cidadão-já-assinou-a-denúncia)
 	- [1.5. Fluxos de Exceção](#15-fluxos-de-exceção)
-		- [1.5.1. a. Campos Vazios](#151-a-campos-vazios)
-		- [1.5.2. b. Falha de Conexão com o Servidor](#152-b-falha-de-conexão-com-o-servidor)
-		- [1.5.3. c. Conta Bloqueada](#153-c-conta-bloqueada)
+		- [1.5.1. a. Campos Vazios](#151-falha-de-conexão-com-o-servidor)
 	- [1.6. Pré-condições](#16-pré-condições)
 	- [1.7. Pós-condições](#17-pós-condições)
 	- [1.8. Regras de Negócio](#18-regras-de-negócio)
@@ -50,7 +47,7 @@ S -up-> (Notificar Atualizações)
 
 ## 1.4. Fluxos Alternativos
 
-### 1.4.1. a.  Cidadão já assinou a denúncia
+### 1.4.1. a. Cidadão já assinou a denúncia
 1. O cidadão tenta assinar uma denúncia que já foi assinada por ele.
 2. O sistema exibe a mensagem: `"Você já assinou essa denúncia."`
 
