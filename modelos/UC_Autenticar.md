@@ -33,34 +33,12 @@
 skinparam actorStyle awesome
 
 actor "Usuário" as U
-actor "Órgão Responsável" as O
 actor "Sistema" as S
-actor "Moderador" as M
-actor "Cidadão" as C
 
-U --> C
-U --> M
-
-C --> (Cadastrar Usuário)
-C --> (Autenticar Usuário)
-C --> (Registrar Denúncia)
-C --> (Assinar Denúncia)
-C --> (Pesquisar Denúncia)
-C --> (Editar/Excluir Publicação)
-
-M --> (Pesquisar Denúncia)
-M --> (Editar/Excluir Publicação)
-M --> (Analisar Denúncia)
-
-S -up-> (Notificar Atualizações)
-S -up-> (Gerar Relatório)
-
-
-O --> (Responder Denúncia)
-O --> (Responder Feedback)
-
-(Registrar Denúncia) .down.> (Gerar Relatório) : gera
-(Registrar Denúncia) .down.> (Notificar Atualizações) : notifica
+U --> (Inserir credenciais)
+S --> (Validar credenciais)
+S --> (Exibir mensagem de erro)
+U --> (Redirecionar para painel)
 
 @enduml
 ```
@@ -123,85 +101,25 @@ O --> (Responder Feedback)
 
 ```plantuml
 @startuml
-
 |#lightblue|Usuário|
 |Sistema|
-|#lightgreen|Entidade|
 
-|Sistema|
 start
 
 |Usuário|
-:Autenticar via gov.br; <<procedure>>
-:Iniciar nova denúncia; <<procedure>>
-
-split
-  :Descrever o problema;
-split again
-  :Anexar arquivos;
-  |Sistema|
-  while (Arquivos compatíveis?) is (não)
-    :Solicitação do reenvio dos arquivos;
-    :Adição de novos arquivos; <<input>>
-  endwhile (sim)
-endsplit
-
-:Confirmar e publicar denúncia;
-|Usuário|
-:Receber número de protocolo; <<input>>
-|Sistema|
-:Analisar conteúdo da denúncia; <<procedure>>
-
-(A)
-note right
-  Início da verificação de conformidade com as diretrizes
-end note
-detach
-
-(B)
-note right
-  Pós verificação de conformidade com as diretrizes
-end note
-:Gerar e enviar relatório; <<output>>
-
-fork
-  |Usuário|
-  :Receber relatório; <<input>>
-  :Enviar feedback;
-  |Sistema|
-  :Analisar feedback recebido; <<procedure>>
-  (A)
-  detach
-
-fork again
-  |Entidade|
-  :Receber relatório gerado; <<input>>
-  :Confirmar recebimento do feedback;
-  detach
-  |Sistema|
-  (B)
-end fork
-
-|Entidade|
-:Emitir resposta à denúncia; <<procedure>>
-
-stop
+:Preencher nome de usuário e senha;
 
 |Sistema|
-(A)
-if (Conforme diretrizes?) then (sim)
-  :Nenhuma ação necessária;
+:Validar credenciais;
+
+if (Credenciais válidas?) then (sim)
+  :Redirecionar para o painel;
 else (não)
-  #red:<color:white>Editar ou excluir
-  <color:white>conteúdo denunciado;
-  :Notificar usuário sobre ação tomada;
-  stop
+  :Exibir mensagem de erro;
+  :Retornar para tela de login;
 endif
 
-
-(B)
-detach
-
+stop
 @enduml
 ```
 
