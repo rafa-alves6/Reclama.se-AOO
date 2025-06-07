@@ -68,7 +68,6 @@ O --> (Responder Feedback)
 
 ```plantuml
 @startuml
-title Sistema de Denúncias - Diagrama de Classes
 
 abstract class Usuario {
   - id: int <<PK>>
