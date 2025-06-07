@@ -28,26 +28,13 @@
 
 skinparam actorStyle awesome
 
-actor "Usuário" as U
-actor "Órgão Responsável" as O
+actor "Moderador" as M
 actor "Sistema" as S
+actor "Cidadão" as C
 
-U --> (Cadastrar Usuário)
-U --> (Autenticar Usuário)
-U --> (Registrar Denúncia)
-U --> (Assinar Denúncia)
-U --> (Pesquisar Denúncia)
-U --> (Editar/Excluir Publicação)
-
-S --> (Notificar Atualizações)
-S --> (Registrar Denúncia)
-S --> (Gerar Relatório)
-S --> (Editar/Excluir Publicação)
-
-O --> (Responder Denúncia)
-
-(Registrar Denúncia) .down.> (Gerar Relatório) : gera
-(Registrar Denúncia) .down.> (Notificar Atualizações) : notifica
+C --> (Editar/Excluir Publicação)
+M --> (Editar/Excluir Publicação)
+S -up-> (Notificar Atualizações)
 
 @enduml
 ```
@@ -113,8 +100,6 @@ O --> (Responder Denúncia)
 @startuml
 
 |#lightblue|Usuário|
-|Sistema|
-|#lightgreen|Moderador|
 
 |Sistema|
 start
