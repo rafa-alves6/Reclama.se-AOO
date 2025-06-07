@@ -53,7 +53,7 @@ O --> (Responder Feedback)
 | [Autenticar Usuário](./UC_Autenticar.md) | Permite ao usuário realizar a autenticação                    | Autenticação realizada pelo usuário com o gov.br |
 | [Assinar Denúncia](./UC_AssinarDenuncia.md)   | Permite ao cidadão assinar/creditar uma denúncia existente    | Realizado por qualquer cidadão |
 | [Pesquisar Denúncia](./UC_Pesquisar.md) | Permite a pesquisa de denúncias já registradas                | Disponível para Cidadão, Moderador |
-| [Pesquisar Denúncia](./UC_CadastrarUsuario.md) | Permite o cadastro de novos usuários               | Disponível para Cidadão e Moderador |
+| [Cadastrar Usuário](./UC_CadastrarUsuario.md) | Permite o cadastro de novos usuários               | Disponível para Cidadão e Moderador |
 
 
 
