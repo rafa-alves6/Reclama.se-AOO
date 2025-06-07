@@ -43,9 +43,9 @@ S -up-> (Notificar Atualizações)
 1. O usuário ou moderador acessa a página de pesquisa de denúncias.
 2. O sistema apresenta uma caixa de pesquisa e filtros de pesquisa, como:
 	- Título da denúncia.
-  - Status da denúncia.
-  - Data da denúncia
-  - Entidade (Órgão)
+	- Status da denúncia.
+  	- Data da denúncia
+	- Entidade (Órgão)
 3. O usuário insere os critérios de pesquisa desejados.
 4. O sistema retorna a consulta realizada. 
 ---
