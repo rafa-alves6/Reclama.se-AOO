@@ -6,7 +6,7 @@
 	- [1.4. Fluxos Alternativos](#14-fluxos-alternativos)
 		- [1.4.1. a. Credenciais Inválidas](#141-nenhum-resultado-encontrado)
 	- [1.5. Fluxos de Exceção](#15-fluxos-de-exceção)
-		- [1.5.2. a. Falha de Conexão com o Servidor](#151-b-falha-de-conexão-com-o-banco-de-dados)
+		- [1.5.1. a. Falha de Conexão com o Servidor](#151-b-falha-na-conexão-com-a-base-de-dados)
 	- [1.6. Pré-condições](#16-pré-condições)
 	- [1.7. Pós-condições](#17-pós-condições)
 	- [1.8. Regras de Negócio](#18-regras-de-negócio)
@@ -52,7 +52,7 @@ S -up-> (Notificar Atualizações)
 
 ## 1.4. Fluxos Alternativos
 
-### 1.4.1. a.Nenhum Resultado Encontrado
+### 1.4.1. a. Nenhum Resultado Encontrado
 1. O sistema detecta que não há denúncias correspondentes aos critérios de pesquisa.
 2. O sistema exibe a mensagem: `"Nenhum resultado encontrado."`
 
