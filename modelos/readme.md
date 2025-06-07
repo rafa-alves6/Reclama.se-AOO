@@ -64,7 +64,7 @@ O --> (Responder Feedback)
 
 ## 🔹 Diagrama de Classes
 
-### Diagrama Geral do Sistema
+### Visão Geral do Sistema
 
 ```plantuml
 @startuml
