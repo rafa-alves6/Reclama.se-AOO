@@ -36,10 +36,10 @@ actor "Cidadão" as C
 actor "Sistema" as S
 
 C --> (Cadastrar Usuário)
-(Cadastrar Usuário) --> (Validar Dados)
-(Cadastrar Usuário) --> (Verificar CPF e E-mail)
-(Cadastrar Usuário) --> (Criar Conta)
-(Cadastrar Usuário) --> (Enviar E-mail de Confirmação)
+(Cadastrar Usuário) <.down. (Validar Dados) : <<include>>
+(Cadastrar Usuário) <.down. (Verificar CPF e E-mail) : <<include>>
+(Cadastrar Usuário) -> (Criar Conta)
+(Cadastrar Usuário) <.down. (Enviar E-mail de Confirmação) : <<include>>
 
 C --> (Confirmar Cadastro)
 (Confirmar Cadastro) --> (Ativar Conta)
