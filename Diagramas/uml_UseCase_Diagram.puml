@@ -28,6 +28,7 @@ S -up-> (Gerar Relatório)
 
 O --> (Responder Denúncia)
 O --> (Responder Feedback)
+O --> (Pesquisar Denúncia)
 
 (Registrar Denúncia) .down.> (Gerar Relatório) : gera
 (Registrar Denúncia) .down.> (Notificar Atualizações) : notifica
