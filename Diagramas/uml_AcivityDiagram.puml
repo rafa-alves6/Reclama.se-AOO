@@ -22,7 +22,8 @@ split again
   endwhile (sim)
 endsplit
 
-:Confirmar e publicar denúncia;
+:Confirmar denúncia;
+:Publicar denúncia;
 |Usuário|
 :Receber número de protocolo; <<input>>
 |Sistema|
