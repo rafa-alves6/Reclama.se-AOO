@@ -41,6 +41,7 @@ class Entidade extends Usuario {
 }
 
 class EntidadePublica extends Entidade {
+  - cnpj: String
 }
 
 class EntidadePrivada extends Entidade {
