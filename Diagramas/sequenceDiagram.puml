@@ -1,0 +1,46 @@
+@startuml
+actor Usuario
+
+boundary Foo1 as "Interface do Sistema"
+control Foo2 as "Gerenciador de Sessões"
+control Foo3 as "Gerenciador de Denúncias"
+control Foo4 as "Orquestrador de Relatórios"
+boundary Foo5 as "Notificador de Usuário"
+entity Foo6 as "Entidade Denúncia"
+collections Foo7 as "Anexos da Denúncia"
+control Foo8 as "Gerador de Protocolo"
+boundary Foo9 as "Interface do Órgão Responsável"
+database Foo10 as "DataBase"
+
+== Cadastro e Autenticação ==
+Usuario -> Foo1 : Acessa cadastro/login
+Foo1 -> Foo2 : Solicita autenticação (CPF válido)
+Foo2 -> Foo10 : Verifica se CPF já existe 
+Foo10 --> Foo2 : CPF válido e único
+Foo2 --> Foo1 : Usuário autenticado 
+Foo1 --> Usuario : Acesso liberado
+
+== Registro da Denúncia ==
+Usuario -> Foo1 : Preenche dados da denúncia 
+Foo1 -> Foo3 : Solicita registro da denúncia
+Foo3 -> Foo6 : Cria nova entidade denúncia
+Foo3 -> Foo7 : Associa arquivos anexados 
+Foo3 -> Foo8 : Solicita geração de protocolo 
+Foo8 --> Foo3 : Protocolo gerado
+Foo3 -> Foo10 : Persiste denúncia e protocolo
+
+== Geração de Relatório ==
+Foo3 -> Foo4 : Solicita geração de relatório 
+Foo4 -> Foo6 : Consulta dados básicos da denúncia
+Foo4 -> Foo7 : Recupera anexos
+Foo4 -> Foo10 : Obtém tempo médio de resolução
+Foo4 --> Foo3 : Relatório finalizado 
+== Confirmação ao Usuário ==
+Foo3 -> Foo5 : Envia confirmação com número de protocolo
+Foo5 --> Usuario : Confirmação recebida
+
+== Envio ao Órgão Responsável ==
+Foo3 -> Foo9 : Encaminha relatório completo (sem dados do denunciante)
+Foo9 -> Foo10 : Armazena recebimento da denúncia
+
+@enduml
