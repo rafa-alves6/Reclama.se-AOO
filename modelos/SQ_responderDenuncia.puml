@@ -1,0 +1,36 @@
+@startuml
+actor Orgao as "Órgão Responsável"
+actor Cidadao as "Cidadão"
+
+boundary Foo1 as "Interface do Sistema"
+control Foo2 as "Gerenciador de Sessões"
+control Foo3 as "Gerenciador de Denúncias"
+entity Foo6 as "Entidade Denúncia"
+boundary Foo5 as "Notificador de Usuário"
+database Foo10 as "DataBase"
+
+== Autenticação ==
+Orgao -> Foo1 : Solicita login
+Foo1 -> Foo2 : Autenticar órgão (gov.br)
+Foo2 -> Foo10 : Validar credenciais
+Foo10 --> Foo2 : Credenciais válidas
+Foo2 --> Foo1 : Órgão autenticado
+Foo1 --> Orgao : Acesso liberado
+
+== Responder Denúncia ==
+Orgao -> Foo1 : Seleciona denúncia recebida
+Foo1 -> Foo3 : Solicita dados da denúncia
+Foo3 -> Foo10 : Consultar denúncia 
+Foo10 --> Foo3 : Dados da denúncia
+Foo3 -> Foo6 : Carregar entidade denúncia
+
+Orgao -> Foo1 : Inserir resposta
+Foo1 -> Foo3 : Enviar resposta
+Foo3 -> Foo6 : Vincular resposta à denúncia
+Foo3 -> Foo10 : Atualizar denúncia e status no banco
+
+== Notificação ao Cidadão ==
+Foo3 -> Foo5 : Enviar notificação de resposta
+Foo5 --> Cidadao : Recebe notificação
+
+@enduml
