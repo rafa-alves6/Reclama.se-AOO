@@ -1,0 +1,74 @@
+@startuml
+skinparam BackgroundColor transparent
+skinparam componentStyle rectangle
+
+skinparam component {
+  backgroundColor<<static lib>> Wheat
+  borderColor Black
+}
+skinparam node {
+  backgroundColor<<shared_node>> LightSteelBlue
+  borderColor Gray
+}
+skinparam databaseBackgroundColor Silver
+
+cloud "Usuário Externo" as WebClient {
+  [Frontend Web]
+}
+
+package "API Reclama.se" {
+  node "Servidor Spring Boot" <<shared_node>> {
+    component "Serviço de Denúncias" <<static lib>> as Denuncia {
+      portin criarDenuncia
+      portin listarDenuncias
+      portin detalhesDenuncia
+      portout respostaDenuncia
+    }
+
+    component "Serviço de Usuários" <<static lib>> as Usuario {
+      portin criarUsuario
+      portin editarPerfil
+      portin visualizarPerfil
+    }
+
+    component "Serviço de Atendimento" <<static lib>> as Atendimento {
+      portin atribuirOrgao
+      portin responderDenuncia
+      portout statusAtendimento
+    }
+
+    component "Serviço de Administração" <<static lib>> as Admin {
+      portin listarUsuarios
+      portin aprovarDenuncia
+      portin bloquearUsuario
+    }
+
+    component "Serviço de Relatórios" <<static lib>> as Relatorio {
+      portin gerarRelatorio
+      portin exportarCSV
+    }
+
+    component "Serviço de Feedback" <<static lib>> as Feedback {
+      portin enviarFeedback
+      portin listarFeedbacks
+    }
+  }
+}
+
+database "SQL Server - Reclama.se" as Database
+
+' Conexões externas (usuário)
+[Frontend Web] --> criarDenuncia
+[Frontend Web] --> criarUsuario
+[Frontend Web] --> visualizarPerfil
+[Frontend Web] --> enviarFeedback
+[Frontend Web] --> gerarRelatorio
+
+' Conexões de componentes para DB (caixa preta)
+Denuncia --> Database
+Usuario --> Database
+Atendimento --> Database
+Admin --> Database
+Relatorio --> Database
+Feedback --> Database
+@enduml
