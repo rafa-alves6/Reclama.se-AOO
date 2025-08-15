@@ -1,23 +1,23 @@
 ```mermaid
 graph TD
     subgraph "Atores e Interfaces (Frontend)"
-        A["Cidadao"] -- "Usa" --> AppCidadao["App do Cidadao (React Native)"]
+        A["Cidadão"] -- "Usa" --> AppCidadao["App do Cidãdao (React Native)"]
         B["Moderador"] -- "Usa" --> PainelAdmin["Painel Administrativo (Web) <br> Acesso por Papel"]
-        D["Entidade / Orgao"] -- "Usa" --> PainelAdmin
+        D["Entidade / Órgão"] -- "Usa" --> PainelAdmin
     end
 
     subgraph "Backend (Servidor)"
         API["API REST (Java / Spring Boot)"]
         
         subgraph "Modulos de Servico"
-            S1["Gestao de Denúncias e Fluxo"]
-            S2["Gestao de Usuarios e Permissoes <br> (Cidãdao, Moderador, Entidade)"]
+            S1["Gestão de Denúncias e Fluxo"]
+            S2["Gestão de Usuários e Permissões <br> (Cidadão, Moderador, Entidade)"]
             S3["Servico de Notificações"]
             S4["Integração com Armazenamento"]
         end
     end
 
-    subgraph "Persistencia e Serviços Ext."
+    subgraph "Persistência e Serviços Ext."
         DB[("Banco de Dados <br> (PostgreSQL)")]
         S3Bucket[("AWS S3 <br> Armazenamento de Anexos")]
         PushService[("Servico de Notificacoes Push <br> (Firebase)")]
