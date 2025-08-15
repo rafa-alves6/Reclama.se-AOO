@@ -2,6 +2,7 @@
 
 ## 🗂️ Organização do Grupo
 **1. Como o grupo organizou as atividades? Houve divisão de tarefas?**
+
   Houve diálogo constante entre o grupo e o professor para elucidar dúvidas e validar ideias do projeto. 
   Cada integrante contribuiu, em diferentes magnitudes, ao projeto.
 
