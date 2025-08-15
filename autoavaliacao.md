@@ -11,7 +11,7 @@
 > Aqui cada usuário deverá realizar sua descrição e realizar o envio com o seu nome para ficar registrado no github
 
 - João Rafael: auxiliei a equipe a definir e modelar funcionalidades basilares do sistema  
-- Nome 2: 
+- Nome 2: Formulação dos diagramas sequência e correções dos diagramas de atividade e caso de uso. 
 - Nome 3: 
 
 ---
