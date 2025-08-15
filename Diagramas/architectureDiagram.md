@@ -10,17 +10,17 @@ graph TD
         API["API REST (Java / Spring Boot)"]
         
         subgraph "Modulos de Servico"
-            S1["Gestao de Denuncias e Fluxo"]
-            S2["Gestao de Usuarios e Permissoes <br> (Cidadao, Moderador, Entidade)"]
-            S3["Servico de Notificacoes"]
-            S4["Integracao com Armazenamento"]
+            S1["Gestao de Denúncias e Fluxo"]
+            S2["Gestao de Usuarios e Permissoes <br> (Cidãdao, Moderador, Entidade)"]
+            S3["Servico de Notificações"]
+            S4["Integração com Armazenamento"]
         end
     end
 
-    subgraph "Persistencia e Servicos Externos"
-        DB[("Banco de Dados <br> (PostgreSQL / MySQL)")]
+    subgraph "Persistencia e Serviços Ext."
+        DB[("Banco de Dados <br> (PostgreSQL)")]
         S3Bucket[("AWS S3 <br> Armazenamento de Anexos")]
-        PushService[("Servico de Notificacoes Push <br> (Firebase/APNS)")]
+        PushService[("Servico de Notificacoes Push <br> (Firebase)")]
     end
 
     %% Conexoes
@@ -29,12 +29,12 @@ graph TD
 
     API --> S1 & S2 & S3 & S4
 
-    S1 -- "Salva/Le dados das denuncias" ---> DB
-    S2 -- "Salva/Le dados de usuarios e papeis" ---> DB
+    S1 -- "Salva/Lê dados das denúncias" ---> DB
+    S2 -- "Salva/Lê dados de usuários e papeis" ---> DB
     
     S4 -- "Upload/Download de anexos" ---> S3Bucket
     
-    S3 -- "Envia gatilho de notificacao" ---> PushService
+    S3 -- "Envia gatilho de notificação" ---> PushService
 
-    PushService -- "Envia notificacao para o dispositivo" --> AppCidadao
+    PushService -- "Envia notificação para o dispositivo" --> AppCidadao
 ```
