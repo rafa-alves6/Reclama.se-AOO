@@ -25,9 +25,9 @@
 - [ ] Ruim (atrasamos muito e isso prejudicou a entrega)
 
 _Justifique brevemente sua resposta:_  
-...
+
 Já havíamos preparado ou pensado em preparar alguns dos diagramas da AV-2 anteriormente. 
----
+
 
 ## 📚 Aprendizados
 **4. Qual o principal aprendizado técnico que você tirou deste trabalho?**  
