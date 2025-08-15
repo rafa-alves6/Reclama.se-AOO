@@ -1,0 +1,30 @@
+@startuml
+actor Cidadao as "Cidadão"
+
+boundary Foo1 as "Interface do Sistema"
+control Foo2 as "Gerenciador de Sessões"
+control Foo7 as "Gerenciador de Feedback"
+entity Foo8 as "Entidade Feedback"
+boundary Foo5 as "Notificador de Usuário"
+database Foo10 as "DataBase"
+
+== Autenticação ==
+Cidadao -> Foo1 : Solicita login
+Foo1 -> Foo2 : Autenticar cidadão (gov.br)
+Foo2 -> Foo10 : Validar credenciais
+Foo10 --> Foo2 : Credenciais válidas
+Foo2 --> Foo1 : Cidadão autenticado
+Foo1 --> Cidadao : Acesso liberado
+
+== Realizar Feedback ==
+Cidadao -> Foo1 : Seleciona denúncia e insere feedback
+Foo1 -> Foo7 : Enviar dados do feedback
+Foo7 -> Foo8 : Criar entidade feedback
+Foo7 -> Foo10 : Registrar feedback no banco
+Foo10 --> Foo7 : Confirmação de registro
+
+== Notificação ao Cidadão ==
+Foo7 -> Foo5 : Enviar confirmação do feedback
+Foo5 --> Cidadao : Recebe confirmação
+
+@enduml
