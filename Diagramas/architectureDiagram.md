@@ -24,8 +24,8 @@ graph TD
     end
 
     %% Conexoes
-    AppCidadao -- "Requisicoes HTTP" --> API
-    PainelAdmin -- "Requisicoes HTTP" --> API
+    AppCidadao -- "Requisições HTTP" --> API
+    PainelAdmin -- "Requisições HTTP" --> API
 
     API --> S1 & S2 & S3 & S4
 
