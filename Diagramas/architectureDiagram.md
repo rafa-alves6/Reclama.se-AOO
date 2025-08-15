@@ -1,7 +1,7 @@
 ```mermaid
 graph TD
     subgraph "Atores e Interfaces (Frontend)"
-        A["Cidadão"] -- "Usa" --> AppCidadao["App do Cidãdao (React Native)"]
+        A["Cidadão"] -- "Usa" --> AppCidadao["App do Cidadão (React Native)"]
         B["Moderador"] -- "Usa" --> PainelAdmin["Painel Administrativo (Web) <br> Acesso por Papel"]
         D["Entidade / Órgão"] -- "Usa" --> PainelAdmin
     end
