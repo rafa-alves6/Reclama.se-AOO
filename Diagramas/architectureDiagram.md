@@ -18,7 +18,7 @@ graph TD
     end
 
     subgraph "Persistência e Serviços Ext."
-        DB[("Banco de Dados <br> (PostgreSQL)")]
+        DB[("Banco de Dados <br> (SQL SERVER)")]
         S3Bucket[("AWS S3 <br> Armazenamento de Anexos")]
         PushService[("Servico de Notificacoes Push <br> (Firebase)")]
     end
