@@ -31,6 +31,7 @@ Já havíamos preparado ou pensado em preparar alguns dos diagramas da AV-2 ante
 ## 📚 Aprendizados
 **4. Qual o principal aprendizado técnico que você tirou deste trabalho?**  
 A trabalhar com ferramentas de edição de UML, além de poder discernir e definir diagramas adequados para fazer a documentação de diferentes funcionalidades de software.
+
 **5. E pessoal (relacionado a trabalho em grupo, organização, etc)?**  
 Colaboração coletiva, especialmente usando sistemas de controle de versão
 
