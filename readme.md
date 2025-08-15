@@ -19,6 +19,7 @@ O Reclama.se busca visibilizar os problemas enfrentados por todas as camadas da 
 - React Native, para desenvolvimento de aplicações mobile.
 - Java com framework Spring para desenvolvimento back-end.
 - AWS com buckets S3 para armazenamento de arquivos de usuários.
+- Firebase Cloud Messaging para envio de notificações.
 
 ## 👥 Integrantes
 - [João Rafael](https://github.com/rafa-alves6) 
