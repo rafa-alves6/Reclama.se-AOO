@@ -9,7 +9,7 @@
 **2. O que você considera que mais contribuiu no projeto?**
 > Aqui cada usuário deverá realizar sua descrição e realizar o envio com o seu nome para ficar registrado no github
 
-- Nome 1: auxiliei a equipe a definir e modelar funcionalidades basilares do sistema  
+- João Rafael: auxiliei a equipe a definir e modelar funcionalidades basilares do sistema  
 - Nome 2: 
 - Nome 3: 
 
